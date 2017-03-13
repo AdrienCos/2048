@@ -4,7 +4,13 @@ QT += qml quick
 
 CONFIG += c++11
 
+HEADERS += cell.h
+HEADERS += gestionjeu.h
+
+
 SOURCES += main.cpp
+SOURCES += cell.cpp
+SOURCES += gestionjeu.cpp
 
 RESOURCES += qml.qrc
 
