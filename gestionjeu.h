@@ -9,15 +9,17 @@ class GestionJeu : public QObject
     Q_OBJECT
 public:
     explicit GestionJeu(QObject *parent = 0);
-    Q_INVOKABLE void NewGame(int nb_lig, int nb_col);
+
+    Q_INVOKABLE void newGame(int nb_lig, int nb_col);
+    Q_INVOKABLE void newCell();
 
 private:
     int nb_lig;
     int nb_col;
     Cell** tableau[];
 
-    void Free();
-    void Alloc();
+    void free();
+    void alloc(int nb_lig , int nb_col);
 
 signals:
 
