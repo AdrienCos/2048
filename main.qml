@@ -4,8 +4,8 @@ import QtQuick.Dialogs 1.2
 
 ApplicationWindow {
     visible: true
-    width: 640
-    height: 480
+    width: 480
+    height: 680
     title: qsTr("Hello World")
 
     menuBar: MenuBar {
@@ -20,12 +20,19 @@ ApplicationWindow {
                 onTriggered: Qt.quit();
             }
         }
+        Menu {
+            title: qsTr("Help")
+            MenuItem {
+                text : qsTr("A propos...")
+                onTriggered: messageDialog.show(qsTr("Programme créé par Alexandre Cartier et Adrien Cosson"))
+            }
+        }
     }
 
     MainForm {
         anchors.fill: parent
-        button1.onClicked: messageDialog.show(qsTr("Button 1 pressed"))
-        button2.onClicked: messageDialog.show(qsTr("Button 2 pressed"))
+        //button1.onClicked: messageDialog.show(qsTr("Button 1 pressed"))
+        //button2.onClicked: messageDialog.show(qsTr("Button 2 pressed"))
     }
 
     MessageDialog {

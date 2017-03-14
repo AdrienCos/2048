@@ -9,22 +9,22 @@ GestionJeu::GestionJeu(QObject *parent) : QObject(parent)
 // Nouvelle Partie
 void GestionJeu::newGame(int nb_lig, int nb_col)
 {
-    Free();     // liberation de memoire
+    free();     // liberation de memoire
     this->nb_col = nb_col;
     this->nb_lig = nb_lig;
-    Alloc();
-    NewCell();
-    NewCell();
+    alloc(nb_lig, nb_col);
+    newCell();
+    newCell();
 }
 
 
 // Allocation du tableau pour une nouvelle partie
 void GestionJeu::alloc(int nb_lig, int nb_col)
 {
-    tableau = new Cell**[nb_lig];
+    tableau = new Cell*[nb_lig];
     for (int i=0 ; i<nb_col ; i++)
     {
-        tableau[i] = new Cell*[nb_col];
+        tableau[i] = new Cell[nb_col];
     }
 }
 
@@ -50,22 +50,22 @@ void GestionJeu::newCell()
     {
         i = rand() % this->nb_lig;  // entier aleatoire entre 0 et nb_lig
         j = rand() % this->nb_col;  // idem avec nb_col
-        if (!(tableau[i][j]->getExiste()))  // case vide trouvée
+        if (!(tableau[i][j].getExiste()))  // case vide trouvee
         {
             trouve = true;
         }
     }
-    tableau[i][j]->setExiste(true);
+    tableau[i][j].setExiste(true);
     num = rand() % 10;  // renvoie un entier aleatoire entre 0 et 9
     if(num==0)  // une fois sur dix, on a un 4
     {
-        tableau[i][j]->setValue(4);
-        tableau[i][j]->setColor("#fb7b7b");
+        tableau[i][j].setValue(4);
+        tableau[i][j].setColor("#fb7b7b");
     }
     else
     {
-        tableau[i][j]->setValue(2);
-        tableau[i][j]->setColor("#fc9e9e");
+        tableau[i][j].setValue(2);
+        tableau[i][j].setColor("#fc9e9e");
     }
 
 }

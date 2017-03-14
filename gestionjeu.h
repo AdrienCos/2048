@@ -16,7 +16,7 @@ public:
 private:
     int nb_lig;
     int nb_col;
-    Cell** tableau[];
+    Cell** tableau;
 
     void free();
     void alloc(int nb_lig , int nb_col);

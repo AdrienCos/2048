@@ -2,7 +2,7 @@
 #define CELL_H
 
 #include <QObject>
-using namespace std
+using namespace std;
 #include <string>
 
 class Cell : public QObject
@@ -11,8 +11,8 @@ class Cell : public QObject
 
 public:
     // Constructeurs
-    explicit Cell(QObject *parent = 0);
-    explicit Cell(QObject *parent = 0 ,int value, string color , bool existe);
+    //explicit Cell(QObject *parent = 0);
+    explicit Cell(QObject *parent = 0 ,int value = 0, string color = "#ffff00", bool existe = false);
 
     // Gestion de la valeur de la cell
     int getValue();
