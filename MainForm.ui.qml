@@ -2,10 +2,44 @@ import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.2
 
-Item {
+Rectangle {
     id: page
     width: 480
     height: 680
+    property alias boutonNewGame: boutonNewGame
+    property alias instructions: instructions
+    property alias titre2048: titre2048
+    property alias textNewGame: textNewGame
+    property alias newGame: newGame
+    property alias textScore: textScore
+    property alias score: score
+    property alias textBest: textBest
+    property alias best: best
+    property alias cell16: cell16
+    property alias cell15: cell15
+    property alias cell14: cell14
+    property alias cell13: cell13
+    property alias cell12: cell12
+    property alias cell11: cell11
+    property alias cell10: cell10
+    property alias cell9: cell9
+    property alias cell8: cell8
+    property alias cell7: cell7
+    property alias cell6: cell6
+    property alias cell5: cell5
+    property alias cell4: cell4
+    property alias cell3: cell3
+    property alias cell2: cell2
+    property alias cell1: cell1
+    property alias grille: grille
+    property alias game: game
+    property alias rectangle: rectangle
+
+    Rectangle {
+        id: rectangle
+        color: "#c2abab"
+        anchors.fill: parent
+    }
 
     Rectangle {
         id: game
@@ -17,7 +51,21 @@ Item {
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 38
         anchors.horizontalCenter: parent.horizontalCenter
+        focus: true
 
+        Keys.onPressed:{
+                console.log("bouton gauche presse");
+                //vueJeu.deplGauche();
+            switch (event.key) {
+              case Qt.Key_Up:
+                vueJeu.deplGauche();
+                break;
+              case Qt.Key_Down:
+                vueJeu.deplGauche();
+                break;
+            }
+
+        }
         Grid {
             id: grille
             width: 424
@@ -31,115 +79,267 @@ Item {
             spacing: 8
             anchors.fill: parent
             columns: 4
+
+
+
+
+
             Rectangle {
                 id: cell1
-                color: "#9a7373"
+                color: "#b48f8f"
+                radius: 6
                 width: 100
                 height: 100
+
+                Text {
+                    id: textCell0
+                    text: vueJeu.states[0]
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    font.pixelSize: 12
+
+                }
             }
             Rectangle {
                 id: cell2
-                color: "#9a7373"
+                color: "#b48f8f"
+                radius: 6
                 width: 100
                 height: 100
+
+                Text {
+                    id: textCell1
+                    text: vueJeu.states[1]
+                    font.pixelSize: 12
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+
+
+                }
             }
 
             Rectangle {
                 id: cell3
                 width: 100
                 height: 100
-                color: "#9a7373"
+                color: "#b48f8f"
+                radius: 6
+
+                Text {
+                    id: textCell2
+                    text: vueJeu.states[2]
+                    font.pixelSize: 12
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+                }
             }
 
             Rectangle {
                 id: cell4
                 width: 100
                 height: 100
-                color: "#9a7373"
+                color: "#b48f8f"
+                radius: 6
+
+                Text {
+                    id: textCell3
+                    text: vueJeu.states[3]
+                    font.pixelSize: 12
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+                }
             }
 
             Rectangle {
                 id: cell5
                 width: 100
                 height: 100
-                color: "#9a7373"
+                color: "#b48f8f"
+                radius: 6
+
+                Text {
+                    id: textCell4
+                    text: vueJeu.states[4]
+                    font.pixelSize: 12
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+                }
             }
 
             Rectangle {
                 id: cell6
                 width: 100
                 height: 100
-                color: "#9a7373"
+                color: "#b48f8f"
+                radius: 6
+
+                Text {
+                    id: textCell5
+                    text: vueJeu.states[5]
+                    font.pixelSize: 12
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+                }
             }
 
             Rectangle {
                 id: cell7
                 width: 100
                 height: 100
-                color: "#9a7373"
+                color: "#b48f8f"
+                radius: 6
+
+                Text {
+                    id: textCell6
+                    text: vueJeu.states[6]
+                    font.pixelSize: 12
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+                }
             }
 
             Rectangle {
                 id: cell8
                 width: 100
                 height: 100
-                color: "#9a7373"
+                color: "#b48f8f"
+                radius: 6
+
+                Text {
+                    id: textCell7
+                    text: vueJeu.states[7]
+                    font.pixelSize: 12
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+                }
             }
 
             Rectangle {
                 id: cell9
                 width: 100
                 height: 100
-                color: "#9a7373"
+                color: "#b48f8f"
+                radius: 6
+
+                Text {
+                    id: textCell8
+                    text: vueJeu.states[8]
+                    font.pixelSize: 12
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+                }
             }
 
             Rectangle {
                 id: cell10
                 width: 100
                 height: 100
-                color: "#9a7373"
+                color: "#b48f8f"
+                radius: 6
+
+                Text {
+                    id: textCell9
+                    text: vueJeu.states[9]
+                    font.pixelSize: 12
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+                }
             }
 
             Rectangle {
                 id: cell11
                 width: 100
                 height: 100
-                color: "#9a7373"
+                color: "#b48f8f"
+                radius: 6
+
+                Text {
+                    id: textCell10
+                    text: vueJeu.states[10]
+                    font.pixelSize: 12
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+                }
             }
 
             Rectangle {
                 id: cell12
                 width: 100
                 height: 100
-                color: "#9a7373"
+                color: "#b48f8f"
+                radius: 6
+
+                Text {
+                    id: textCell11
+                    text: vueJeu.states[11]
+                    font.pixelSize: 12
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+                }
             }
 
             Rectangle {
                 id: cell13
                 width: 100
                 height: 100
-                color: "#9a7373"
+                color: "#b48f8f"
+                radius: 6
+
+                Text {
+                    id: textCell12
+                    text: vueJeu.states[12]
+                    font.pixelSize: 12
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+                }
             }
 
             Rectangle {
                 id: cell14
                 width: 100
                 height: 100
-                color: "#9a7373"
+                color: "#b48f8f"
+                radius: 6
+
+                Text {
+                    id: textCell13
+                    text: vueJeu.states[13]
+                    font.pixelSize: 12
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+                }
             }
 
             Rectangle {
                 id: cell15
                 width: 100
                 height: 100
-                color: "#9a7373"
+                color: "#b48f8f"
+                radius: 6
+
+                Text {
+                    id: textCell14
+                    text: vueJeu.states[14]
+                    font.pixelSize: 12
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+                }
             }
 
             Rectangle {
                 id: cell16
                 width: 100
                 height: 100
-                color: "#9a7373"
+                color: "#b48f8f"
+                radius: 6
+
+                Text {
+                    id: textCell15
+                    text: vueJeu.states[15]
+                    font.pixelSize: 12
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+                }
             }
         }
     }
@@ -212,6 +412,11 @@ Item {
             font.bold: true
             font.pixelSize: 16
         }
+
+        MouseArea {
+            id: boutonNewGame
+            anchors.fill: parent
+        }
     }
 
     Text {
@@ -237,4 +442,6 @@ Item {
         anchors.topMargin: 117
         font.pixelSize: 18
     }
+
+
 }

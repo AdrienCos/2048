@@ -2,7 +2,6 @@
 #define GESTIONJEU_H
 
 #include <QObject>
-#include "cell.h"
 
 class GestionJeu : public QObject
 {
@@ -10,20 +9,27 @@ class GestionJeu : public QObject
 public:
     explicit GestionJeu(QObject *parent = 0);
 
+    Q_PROPERTY(QList<QString> states READ readStates NOTIFY statesChanged)
+
     Q_INVOKABLE void newGame(int nb_lig, int nb_col);
     Q_INVOKABLE void newCell();
+    Q_INVOKABLE void deplGauche();
+    QList<QString> readStates();
+
 
 private:
     int nb_lig;
     int nb_col;
-    Cell** tableau;
+    int** tableau;          //matrice des valeurs des cellules
 
     void free();
     void alloc(int nb_lig , int nb_col);
 
 signals:
+    void statesChanged();
 
 public slots:
+
 };
 
 #endif // GESTIONJEU_H
