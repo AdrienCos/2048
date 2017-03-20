@@ -47,15 +47,18 @@ void GestionJeu::free()
 // Appel de cette fonction suite au signal statesChanged
 QList<QString> GestionJeu::readStates()
 {
-
     QList<QString> liste;
-    int cpt=0;
     for (int i = 0 ; i<nb_lig ; i++)
     {
         for (int j = 0 ; j<nb_col ; j++)
         {
-            liste.append(QString::number(tableau[i][j]));
-            cpt++;
+            if (tableau[i][j]==0)
+            {
+                liste.append(" ");      // si la case est vide, on n'affiche rien
+            }
+            else{
+                liste.append(QString::number(tableau[i][j]));   // si elle est pleine, on affiche sa valeur
+            }
         }
     }
     return liste;
@@ -65,10 +68,11 @@ QList<QString> GestionJeu::readStates()
 // TODO : gestion de la fin de la partie
 void GestionJeu::newCell()
 {
-    bool trouve=false;
-    int i=0;  // variables de recherche de case libre
-    int j=0;
-    int num;    // variable pour le choix de la valeur
+    bool trouve = false;
+    int i = 0;  // variables de recherche de case libre
+    int j = 0;
+    int num = 0;    // variable pour le choix de la valeur
+    srand(time(0));     // initialisation du seed
     while(!trouve)
     {
         i = rand()%nb_lig;  // entier aleatoire entre 0 et nb_lig
@@ -94,6 +98,18 @@ void GestionJeu::newCell()
 }
 
 //-------GESTION DES DEPLACEMENTS------------//
+/* Info pour Alexandre : l'algo actuel pose un souci dans le cas suivant :
+ *
+ *  - - - -
+ *  - 2 4 -
+ *  - - - -
+ *  - - - -
+ *
+ * si on demande un mouvement à droite ou a gauche, seule une des cases bouge (le 2 en cas de mouvement à gauche, la 4 en cas de mouvement à droite)
+ * car sa voisine détecte que la case d'a coté n'est pas vide (elle n'a pas encore été vidée par l'algo)
+ * Une solution possible selon moi est de repasser plusieurs fois l'algo (tourner nb_col-1 fois en cas de déplacement gauche-droite, et (nb_lig-1)
+ * fois en cas de déplacement haut-bas.
+ */
 
 void GestionJeu::deplGauche(){
     int value;
@@ -115,10 +131,34 @@ void GestionJeu::deplGauche(){
             {
                 tableau[i][num_colonne]=0;
                 tableau[i][num_colonne-1]=2*value;
-
             }
         }
     }
     statesChanged();
+}
 
+void GestionJeu::deplDroite(){
+    int value;
+    int num_colonne;
+    for(int j=0;j<(nb_col-1);j++){
+        //on finit a l'avant-derniere colonne car la derniere ne se déplace pas à gauche
+        for(int i=0;i<nb_lig;i++){
+            value=tableau[i][j];                    //valeur de la case traitée
+            num_colonne=j;
+            if (tableau[i][num_colonne+1]==0){
+                while((tableau[i][num_colonne+1]==0) && (num_colonne+2<=nb_col)){
+                    //tant que la case à droite est vide, on se déplace à droite
+                    tableau[i][num_colonne]=0;
+                    tableau[i][num_colonne+1]=value;    //déplacement à droite
+                    num_colonne+=1;
+                }
+            }
+            if ((num_colonne<nb_col) && (tableau[i][num_colonne+1]==value))  // en cas de probleme regarder ici (scinder les deux if)
+            {
+                tableau[i][num_colonne]=0;
+                tableau[i][num_colonne+1]=2*value;
+            }
+        }
+    }
+    statesChanged();
 }

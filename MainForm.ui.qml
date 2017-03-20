@@ -33,13 +33,8 @@ Rectangle {
     property alias cell1: cell1
     property alias grille: grille
     property alias game: game
-    property alias rectangle: rectangle
 
-    Rectangle {
-        id: rectangle
-        color: "#c2abab"
-        anchors.fill: parent
-    }
+
 
     Rectangle {
         id: game
@@ -54,15 +49,15 @@ Rectangle {
         focus: true
 
         Keys.onPressed:{
-                console.log("bouton gauche presse");
-                //vueJeu.deplGauche();
+
             switch (event.key) {
-              case Qt.Key_Up:
+            case Qt.Key_Left:
                 vueJeu.deplGauche();
+                console.log("bouton gauche presse");
                 break;
-              case Qt.Key_Down:
-                vueJeu.deplGauche();
-                break;
+            case Qt.Key_Right:
+                vueJeu.deplDroite();
+                console.log("bouton droit presse");
             }
 
         }
@@ -96,7 +91,7 @@ Rectangle {
                     text: vueJeu.states[0]
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.horizontalCenter: parent.horizontalCenter
-                    font.pixelSize: 12
+                    font.pixelSize: 35
 
                 }
             }
@@ -110,7 +105,7 @@ Rectangle {
                 Text {
                     id: textCell1
                     text: vueJeu.states[1]
-                    font.pixelSize: 12
+                    font.pixelSize: 35
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
 
@@ -128,7 +123,7 @@ Rectangle {
                 Text {
                     id: textCell2
                     text: vueJeu.states[2]
-                    font.pixelSize: 12
+                    font.pixelSize: 35
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
                 }
@@ -144,7 +139,7 @@ Rectangle {
                 Text {
                     id: textCell3
                     text: vueJeu.states[3]
-                    font.pixelSize: 12
+                    font.pixelSize: 35
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
                 }
@@ -160,7 +155,7 @@ Rectangle {
                 Text {
                     id: textCell4
                     text: vueJeu.states[4]
-                    font.pixelSize: 12
+                    font.pixelSize: 35
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
                 }
@@ -176,7 +171,7 @@ Rectangle {
                 Text {
                     id: textCell5
                     text: vueJeu.states[5]
-                    font.pixelSize: 12
+                    font.pixelSize: 35
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
                 }
@@ -192,7 +187,7 @@ Rectangle {
                 Text {
                     id: textCell6
                     text: vueJeu.states[6]
-                    font.pixelSize: 12
+                    font.pixelSize: 35
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
                 }
@@ -208,7 +203,7 @@ Rectangle {
                 Text {
                     id: textCell7
                     text: vueJeu.states[7]
-                    font.pixelSize: 12
+                    font.pixelSize: 35
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
                 }
@@ -224,7 +219,7 @@ Rectangle {
                 Text {
                     id: textCell8
                     text: vueJeu.states[8]
-                    font.pixelSize: 12
+                    font.pixelSize: 35
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
                 }
@@ -240,7 +235,7 @@ Rectangle {
                 Text {
                     id: textCell9
                     text: vueJeu.states[9]
-                    font.pixelSize: 12
+                    font.pixelSize: 35
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
                 }
@@ -256,7 +251,7 @@ Rectangle {
                 Text {
                     id: textCell10
                     text: vueJeu.states[10]
-                    font.pixelSize: 12
+                    font.pixelSize: 35
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
                 }
@@ -272,7 +267,7 @@ Rectangle {
                 Text {
                     id: textCell11
                     text: vueJeu.states[11]
-                    font.pixelSize: 12
+                    font.pixelSize: 35
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
                 }
@@ -288,7 +283,7 @@ Rectangle {
                 Text {
                     id: textCell12
                     text: vueJeu.states[12]
-                    font.pixelSize: 12
+                    font.pixelSize: 35
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
                 }
@@ -304,7 +299,7 @@ Rectangle {
                 Text {
                     id: textCell13
                     text: vueJeu.states[13]
-                    font.pixelSize: 12
+                    font.pixelSize: 35
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
                 }
@@ -320,7 +315,7 @@ Rectangle {
                 Text {
                     id: textCell14
                     text: vueJeu.states[14]
-                    font.pixelSize: 12
+                    font.pixelSize: 35
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
                 }
@@ -336,7 +331,7 @@ Rectangle {
                 Text {
                     id: textCell15
                     text: vueJeu.states[15]
-                    font.pixelSize: 12
+                    font.pixelSize: 35
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
                 }
@@ -416,6 +411,7 @@ Rectangle {
         MouseArea {
             id: boutonNewGame
             anchors.fill: parent
+            onClicked: vueJeu.newGame(4,4)
         }
     }
 

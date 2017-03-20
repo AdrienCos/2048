@@ -12,8 +12,8 @@ ApplicationWindow {
         Menu {
             title: qsTr("File")
             MenuItem {
-                text: qsTr("&Open")
-                onTriggered: console.log("Open action triggered");
+                text: qsTr("New game")
+                onTriggered: vueJeu.newGame(4,4)
             }
             MenuItem {
                 text: qsTr("Exit")

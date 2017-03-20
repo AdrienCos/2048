@@ -2,6 +2,7 @@
 #define GESTIONJEU_H
 
 #include <QObject>
+#include <time.h>
 
 class GestionJeu : public QObject
 {
@@ -14,6 +15,7 @@ public:
     Q_INVOKABLE void newGame(int nb_lig, int nb_col);
     Q_INVOKABLE void newCell();
     Q_INVOKABLE void deplGauche();
+    Q_INVOKABLE void deplDroite();
     QList<QString> readStates();
 
 
