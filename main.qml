@@ -6,7 +6,7 @@ ApplicationWindow {
     visible: true
     width: 480
     height: 680
-    title: qsTr("Hello World")
+    title: qsTr("Le 2048 d'Adrien et Alexandre")
 
     menuBar: MenuBar {
         Menu {

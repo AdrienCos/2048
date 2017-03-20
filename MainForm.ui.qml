@@ -46,10 +46,10 @@ Rectangle {
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 38
         anchors.horizontalCenter: parent.horizontalCenter
-        focus: true
+        focus: vueJeu.resume                 //très important, permet de selectionner la zone qui réagit au onPressed
+
 
         Keys.onPressed:{
-
             switch (event.key) {
             case Qt.Key_Left:
                 vueJeu.deplGauche();
@@ -58,12 +58,20 @@ Rectangle {
             case Qt.Key_Right:
                 vueJeu.deplDroite();
                 console.log("bouton droit presse");
+                break;
             case Qt.Key_Up:
                 vueJeu.deplHaut();
                 console.log("bouton haut presse");
-            }
+                break;
 
+            case Qt.Key_Down:
+                vueJeu.deplBas();
+                console.log("bouton bas presse")
+                break;
+            }
         }
+
+
         Grid {
             id: grille
             width: 424
@@ -97,6 +105,7 @@ Rectangle {
                     font.pixelSize: 35
 
                 }
+
             }
             Rectangle {
                 id: cell2
@@ -387,6 +396,17 @@ Rectangle {
             anchors.horizontalCenterOffset: 0
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.topMargin: 5
+        }
+
+        Text {
+            id: resultat_jeu
+            text: vueJeu.resultat
+            horizontalAlignment: Text.AlignHCenter
+            font.pixelSize: 19
+            anchors.top: parent.top
+            anchors.horizontalCenterOffset: 0
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.topMargin: 13
         }
     }
 

@@ -3,6 +3,8 @@
 
 #include <QObject>
 #include <time.h>
+#include <string>
+using namespace std;
 
 class GestionJeu : public QObject
 {
@@ -11,16 +13,22 @@ public:
     explicit GestionJeu(QObject *parent = 0);
 
     Q_PROPERTY(QList<QString> states READ readStates NOTIFY statesChanged)
+    Q_PROPERTY(QString resultat READ verifFinPartie NOTIFY finPartie)
+    Q_PROPERTY(bool resume READ arretJeu NOTIFY arret)
 
     Q_INVOKABLE void newGame(int nb_lig, int nb_col);
     Q_INVOKABLE void newCell();
     Q_INVOKABLE void deplGauche();
     Q_INVOKABLE void deplDroite();
     Q_INVOKABLE void deplHaut();
+    Q_INVOKABLE void deplBas();
     QList<QString> readStates();
+    QString verifFinPartie();
+    bool arretJeu();
 
 
 private:
+    string etat;
     int nb_lig;
     int nb_col;
     int** tableau;          //matrice des valeurs des cellules
@@ -30,6 +38,8 @@ private:
 
 signals:
     void statesChanged();
+    void finPartie();
+    void arret();
 
 public slots:
 
