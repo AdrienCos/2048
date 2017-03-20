@@ -13,33 +13,34 @@ public:
     explicit GestionJeu(QObject *parent = 0);
 
     Q_PROPERTY(QList<QString> states READ readStates NOTIFY statesChanged)
-    Q_PROPERTY(QString resultat READ verifFinPartie NOTIFY finPartie)
-    Q_PROPERTY(bool resume READ arretJeu NOTIFY arret)
 
     Q_INVOKABLE void newGame(int nb_lig, int nb_col);
-    Q_INVOKABLE void newCell();
+
+    // Méthodes de déplacement
     Q_INVOKABLE void deplGauche();
     Q_INVOKABLE void deplDroite();
     Q_INVOKABLE void deplHaut();
     Q_INVOKABLE void deplBas();
+
+    // Methode de transmission des infos au QML
     QList<QString> readStates();
-    QString verifFinPartie();
-    bool arretJeu();
 
 
 private:
-    string etat;
+
     int nb_lig;
     int nb_col;
     int** tableau;          //matrice des valeurs des cellules
 
     void free();
     void alloc(int nb_lig , int nb_col);
+    void newCell();
+
+    int score;      // score actuel de la partie
+    int maxscore;   // score maximal sur toute la durée de jeu
 
 signals:
     void statesChanged();
-    void finPartie();
-    void arret();
 
 public slots:
 
