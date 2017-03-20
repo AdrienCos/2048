@@ -5,14 +5,11 @@ using namespace std;
 //Constructeur
 GestionJeu::GestionJeu(QObject *parent) : QObject(parent)
 {
-    //etat="en cours";
     alloc(4,4);
     score = 0;
-    partieFinie = false;
     maxscore = 0;       // initialisation du score maximum
     newCell();
     newCell();
-    //arretJeu();    //permet de lancer la partie(met le focus à true)
 }
 
 // Nouvelle Partie
@@ -22,11 +19,8 @@ void GestionJeu::newGame(int nb_lig, int nb_col)
     alloc(nb_lig, nb_col);
     maxscore = max(maxscore, score);       // conservation en mémoire du meilleur score
     score = 0;
-    partieFinie = false;
     newCell();
     newCell();
-    //etat="en cours";
-    //arretJeu();
 }
 
 
@@ -75,6 +69,54 @@ QList<QString> GestionJeu::readStates()
             }
         }
     }
+    // Gestion de l'ajout des couleurs aux cases
+    // TODO : ajouter encore quelques couleurs (aller jusqu'à 8192 ?)
+    for (int i = 0 ; i<nb_lig ; i++)
+    {
+        for (int j = 0 ; j<nb_col ; j++)
+        {
+            if (tableau[i][j]==2)
+            {
+                liste.append("#ece2d8");
+            }
+            else if(tableau[i][j]==4)
+            {
+                liste.append("#eadec6");
+            }
+            else if(tableau[i][j] == 8)
+            {
+                liste.append("#f0b17a");
+            }
+            else if(tableau[i][j] == 16)
+            {
+                liste.append("#F49563");
+            }
+            else if(tableau[i][j] == 32)
+            {
+                liste.append("#F57E61");
+            }
+            else if(tableau[i][j] == 64)
+            {
+                liste.append("#F55F3C");
+            }
+            else if(tableau[i][j] == 128)
+            {
+                liste.append("#EDCF75");
+            }
+            else if(tableau[i][j] == 256)
+            {
+                liste.append("#EDCF5B");
+            }
+            else if(tableau[i][j] == 512)
+            {
+                liste.append("#ECC955");
+            }
+            else
+            {
+                liste.append("#b48f8f");
+            }
+        }
+    }
     liste.append((QString::number(score)));     // on transmet aussi le score actuel ...
     liste.append((QString::number(maxscore)));  // ... et le score max
     return liste;
@@ -85,18 +127,6 @@ QList<QString> GestionJeu::readStates()
 // TODO : gestion de la fin de la partie
 void GestionJeu::newCell()
 {
-    //on vérifie d'abord s'il y a encore de la place
-    /*bool isSpace = false;
-    for(int x=0;x<nb_lig;x++) {
-        for(int y=0;y<nb_lig;y++){
-            if(tableau[x][y]==0){
-                isSpace = true;
-            }
-        }
-    }*/
-
-    //s'il reste de la place:
-    //    if(isSpace){
     bool trouve = false;
     int i = 0;  // variables de recherche de case libre
     int j = 0;
@@ -111,32 +141,22 @@ void GestionJeu::newCell()
             trouve = true;
         }
     }
-
     num = rand() % 10;  // renvoie un entier aleatoire entre 0 et 9
     if(num==0)  // une fois sur dix, on a un 4
     {
         tableau[i][j]=4;
-        //score += 4;   ancienne version du système de score
-        //maxscore = max(maxscore, score);    // mise a jour eventuelle du meilleur score
         //tableau[i][j].setColor("#fb7b7b");
     }
     else
     {
         tableau[i][j]=2;
-        //score += 2;
-        //maxscore = max(maxscore, score);    // mise a jour eventuelle du meilleur score
         //tableau[i][j].setColor("#fc9e9e");
     }
     statesChanged();
-    //finPartie();            //verif s'il y a un 2048
-    //arret();
-    //    }
-
     //sinon, on ne peut plus remplir, donc on arrête on arrête la partie en verifiant si c'est gagné ou perdu
     //mais il est possible qu'on soit arriver ici parce qu'une direction n'est plus possible
     //cad à gauche: ça ne bouge plus, par contre vers le bas c'est possible
     //Revoir les conditions... exceptions?...
-
 }
 
 
@@ -175,10 +195,6 @@ void GestionJeu::deplGauche(){
         newCell();
         statesChanged();
     }
-    else
-    {
-        verifieGrille();        // on regarde si la grille est pleine
-    }
 }
 
 void GestionJeu::deplDroite(){
@@ -214,11 +230,6 @@ void GestionJeu::deplDroite(){
         newCell();
         statesChanged();
     }
-    else
-    {
-        verifieGrille();        // on regarde si la grille est pleine
-    }
-
 }
 
 void GestionJeu::deplHaut(){
@@ -253,15 +264,9 @@ void GestionJeu::deplHaut(){
         newCell();
         statesChanged();
     }
-    else
-    {
-        verifieGrille();        // on regarde si la grille est pleine
-    }
-
 }
 
 void GestionJeu::deplBas(){
-    cout << "test";
     int value;
     int num_ligne;
     bool aBouge = false;
@@ -293,73 +298,8 @@ void GestionJeu::deplBas(){
         newCell();
         statesChanged();
     }
-    else
-    {
-        verifieGrille();        // on regarde si la grille est pleine
-    }
 }
 
 
 
 //----------------Gestion Fin de Partie ------------------//
-
-// Si la grille est pleine, on change la variable grillePleine
-void GestionJeu::verifieGrille()
-{
-    bool isSpace = false;
-    for(int x = 0 ; x < nb_lig ; x++) {
-        for(int y = 0 ; y < nb_lig ; y++){
-            if(tableau[x][y]==0){
-                isSpace = true;
-            }
-        }
-    }
-    if(!isSpace)
-    {
-        grillePleineSignal();
-
-    }
-}
-
-bool GestionJeu::readGrillePleine()
-{
-    cout << "grille pleine";
-    return grillePleine;
-}
-
-void GestionJeu::finPartie()
-{
-    partieFinie = true;
-}
-
-//QString GestionJeu::verifFinPartie(){
-//    //permet d'envoyer un message au joueur lorsqu'il gagne ou perd
-
-//    QString res;             //resultat envoyé au QML
-//    res="";
-//    for(int i=0;i<nb_lig;i++){
-//        for(int j=0;j<nb_col;j++){
-//            if(tableau[i][j]==2048){
-//                etat="gagne";
-//                res="gagne";
-//                return res;
-//            }
-
-//        }
-//    }
-//    if((etat!="en cours") && (etat!="gagne")){
-//        res="perdu";
-//    }
-//    return res;
-//}
-
-//bool GestionJeu::arretJeu(){
-//    //permet d'arrêter la partie en mettant le focus à false
-//    if(etat=="gagne" || etat=="perdu")
-//    {
-//        return false;
-//    }
-//    else{
-//        return true;
-//    }
-//}

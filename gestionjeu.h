@@ -13,11 +13,8 @@ public:
     explicit GestionJeu(QObject *parent = 0);
 
     Q_PROPERTY(QList<QString> states READ readStates NOTIFY statesChanged)
-    //Q_PROPERTY( READ finPartie NOTIFY grillePleine)
-    Q_PROPERTY(bool grillePleine READ readGrillePleine NOTIFY grillePleineSignal)
 
     Q_INVOKABLE void newGame(int nb_lig, int nb_col);
-    Q_INVOKABLE void newCell();
 
     // Méthodes de déplacement
     Q_INVOKABLE void deplGauche();
@@ -25,32 +22,25 @@ public:
     Q_INVOKABLE void deplHaut();
     Q_INVOKABLE void deplBas();
 
-    Q_INVOKABLE void finPartie();
-
+    // Methode de transmission des infos au QML
     QList<QString> readStates();
-    bool readGrillePleine();
-    void verifieGrille();       // methode de recherche d'espace libre sur la grille
-    //QString finPartie();
-
 
 
 private:
-    bool grillePleine;
-    bool arretJeu();
-    bool partieFinie;
+
     int nb_lig;
     int nb_col;
     int** tableau;          //matrice des valeurs des cellules
 
     void free();
     void alloc(int nb_lig , int nb_col);
+    void newCell();
 
     int score;      // score actuel de la partie
     int maxscore;   // score maximal sur toute la durée de jeu
 
 signals:
     void statesChanged();
-    void grillePleineSignal();
 
 public slots:
 

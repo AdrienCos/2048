@@ -93,7 +93,7 @@ Rectangle {
 
             Rectangle {
                 id: cell1
-                color: "#b48f8f"
+                color: vueJeu.states[16]
                 radius: 6
                 width: 100
                 height: 100
@@ -110,7 +110,7 @@ Rectangle {
             }
             Rectangle {
                 id: cell2
-                color: "#b48f8f"
+                color: vueJeu.states[17]
                 radius: 6
                 width: 100
                 height: 100
@@ -130,7 +130,7 @@ Rectangle {
                 id: cell3
                 width: 100
                 height: 100
-                color: "#b48f8f"
+                color: vueJeu.states[18]
                 radius: 6
 
                 Text {
@@ -146,7 +146,7 @@ Rectangle {
                 id: cell4
                 width: 100
                 height: 100
-                color: "#b48f8f"
+                color: vueJeu.states[19]
                 radius: 6
 
                 Text {
@@ -162,7 +162,7 @@ Rectangle {
                 id: cell5
                 width: 100
                 height: 100
-                color: "#b48f8f"
+                color: vueJeu.states[20]
                 radius: 6
 
                 Text {
@@ -178,7 +178,7 @@ Rectangle {
                 id: cell6
                 width: 100
                 height: 100
-                color: "#b48f8f"
+                color: vueJeu.states[21]
                 radius: 6
 
                 Text {
@@ -194,7 +194,7 @@ Rectangle {
                 id: cell7
                 width: 100
                 height: 100
-                color: "#b48f8f"
+                color: vueJeu.states[22]
                 radius: 6
 
                 Text {
@@ -210,7 +210,7 @@ Rectangle {
                 id: cell8
                 width: 100
                 height: 100
-                color: "#b48f8f"
+                color: vueJeu.states[23]
                 radius: 6
 
                 Text {
@@ -226,7 +226,7 @@ Rectangle {
                 id: cell9
                 width: 100
                 height: 100
-                color: "#b48f8f"
+                color: vueJeu.states[24]
                 radius: 6
 
                 Text {
@@ -242,7 +242,7 @@ Rectangle {
                 id: cell10
                 width: 100
                 height: 100
-                color: "#b48f8f"
+                color: vueJeu.states[25]
                 radius: 6
 
                 Text {
@@ -258,7 +258,7 @@ Rectangle {
                 id: cell11
                 width: 100
                 height: 100
-                color: "#b48f8f"
+                color: vueJeu.states[26]
                 radius: 6
 
                 Text {
@@ -274,7 +274,7 @@ Rectangle {
                 id: cell12
                 width: 100
                 height: 100
-                color: "#b48f8f"
+                color: vueJeu.states[27]
                 radius: 6
 
                 Text {
@@ -290,7 +290,7 @@ Rectangle {
                 id: cell13
                 width: 100
                 height: 100
-                color: "#b48f8f"
+                color: vueJeu.states[28]
                 radius: 6
 
                 Text {
@@ -306,7 +306,7 @@ Rectangle {
                 id: cell14
                 width: 100
                 height: 100
-                color: "#b48f8f"
+                color: vueJeu.states[29]
                 radius: 6
 
                 Text {
@@ -322,7 +322,7 @@ Rectangle {
                 id: cell15
                 width: 100
                 height: 100
-                color: "#b48f8f"
+                color: vueJeu.states[30]
                 radius: 6
 
                 Text {
@@ -338,7 +338,7 @@ Rectangle {
                 id: cell16
                 width: 100
                 height: 100
-                color: "#b48f8f"
+                color: vueJeu.states[31]
                 radius: 6
 
                 Text {
@@ -376,7 +376,7 @@ Rectangle {
 
         Text {
             id: best_score
-            text: vueJeu.states[17]
+            text: vueJeu.states[33]
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 25
             anchors.top: parent.top
@@ -412,7 +412,7 @@ Rectangle {
 
         Text {
             id: resultat_jeu
-            text: vueJeu.states[16]
+            text: vueJeu.states[32]
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 25
             anchors.top: parent.top
@@ -474,16 +474,7 @@ Rectangle {
         font.pixelSize: 18
     }
 
-    MessageDialog {
-        id: messageDialog
-        title: "May I have your attention please"
-        text: "It's so cool that you are using Qt Quick."
-        onAccepted: {
-            console.log("And of course you could only agree.")
-            Qt.quit()
-        }
-        Component.onCompleted: visible = vueJeu.partieFinie
-    }
+
 }
 
 
