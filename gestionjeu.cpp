@@ -134,6 +134,7 @@ void GestionJeu::deplGauche(){
             }
         }
     }
+    newCell();
     statesChanged();
 }
 
@@ -160,5 +161,33 @@ void GestionJeu::deplDroite(){
             }
         }
     }
+    newCell();
+    statesChanged();
+}
+
+void GestionJeu::deplHaut(){
+    int value;
+    int num_ligne;
+    for(int i=1;i<nb_lig;i++){
+        //on commence a la seconde ligne car la permiere ne se déplace pas en haut
+        for(int j=0;i<nb_col;j++){
+            value=tableau[i][j];                    //valeur de la case traitée
+            num_ligne=i;
+            if (tableau[num_ligne-1][j]==0){
+                while((tableau[num_ligne-1][j]==0) && (num_ligne-1>=0)){
+                    //tant que la case à droite est vide, on se déplace à droite
+                    tableau[num_ligne][j]=0;
+                    tableau[num_ligne-1][j]=value;    //déplacement à droite
+                    num_ligne-=1;
+                }
+            }
+            if ((num_ligne>0) && (tableau[num_ligne-1][j]==value))  // en cas de probleme regarder ici (scinder les deux if)
+            {
+                tableau[num_ligne][j]=0;
+                tableau[num_ligne-1][j]=2*value;
+            }
+        }
+    }
+    newCell();
     statesChanged();
 }

@@ -16,6 +16,7 @@ public:
     Q_INVOKABLE void newCell();
     Q_INVOKABLE void deplGauche();
     Q_INVOKABLE void deplDroite();
+    Q_INVOKABLE void deplHaut();
     QList<QString> readStates();
 
 

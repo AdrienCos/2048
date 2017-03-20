@@ -58,6 +58,9 @@ Rectangle {
             case Qt.Key_Right:
                 vueJeu.deplDroite();
                 console.log("bouton droit presse");
+            case Qt.Key_Up:
+                vueJeu.deplHaut();
+                console.log("bouton haut presse");
             }
 
         }
