@@ -1,6 +1,7 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.2
+import QtQuick.Dialogs 1.2
 
 Rectangle {
     id: page
@@ -46,8 +47,8 @@ Rectangle {
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 38
         anchors.horizontalCenter: parent.horizontalCenter
-        focus: vueJeu.resume                 //très important, permet de selectionner la zone qui réagit au onPressed
-
+        //focus: vueJeu.resume                 //très important, permet de selectionner la zone qui réagit au onPressed
+        focus : true
 
         Keys.onPressed:{
             switch (event.key) {
@@ -372,6 +373,17 @@ Rectangle {
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 19
         }
+
+        Text {
+            id: best_score
+            text: vueJeu.states[17]
+            horizontalAlignment: Text.AlignHCenter
+            font.pixelSize: 25
+            anchors.top: parent.top
+            anchors.horizontalCenterOffset: 0
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.topMargin: 30
+        }
     }
 
     Rectangle {
@@ -400,13 +412,13 @@ Rectangle {
 
         Text {
             id: resultat_jeu
-            text: vueJeu.resultat
+            text: vueJeu.states[16]
             horizontalAlignment: Text.AlignHCenter
-            font.pixelSize: 19
+            font.pixelSize: 25
             anchors.top: parent.top
             anchors.horizontalCenterOffset: 0
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.topMargin: 13
+            anchors.topMargin: 30
         }
     }
 
@@ -462,5 +474,16 @@ Rectangle {
         font.pixelSize: 18
     }
 
-
+    MessageDialog {
+        id: messageDialog
+        title: "May I have your attention please"
+        text: "It's so cool that you are using Qt Quick."
+        onAccepted: {
+            console.log("And of course you could only agree.")
+            Qt.quit()
+        }
+        Component.onCompleted: visible = vueJeu.partieFinie
+    }
 }
+
+
