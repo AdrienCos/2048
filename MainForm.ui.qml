@@ -7,6 +7,31 @@ Rectangle {
     id: page
     width: 480
     height: 680
+    property alias textTryAgain: textTryAgain
+    property alias textGameOver: textGameOver
+    property alias gameOver: gameOver
+    property alias textCell0: textCell0
+    property alias textCell1: textCell1
+    property alias textCell2: textCell2
+    property alias textCell3: textCell3
+    property alias cell11: cell11
+    property alias textCell8: textCell8
+    property alias textCell7: textCell7
+    property alias textCell4: textCell4
+    property alias textCell5: textCell5
+    property alias textCell6: textCell6
+    property alias textCell15: textCell15
+    property alias textCell14: textCell14
+    property alias textCell13: textCell13
+    property alias textCell12: textCell12
+    property alias textCell11: textCell11
+    property alias textCell10: textCell10
+    property alias textCell9: textCell9
+    property alias resultat_jeu: resultat_jeu
+    property alias best_score: best_score
+    property alias boutonUndo: boutonUndo
+    property alias textUndo: textUndo
+    property alias undo: undo
     property alias boutonNewGame: boutonNewGame
     property alias instructions: instructions
     property alias titre2048: titre2048
@@ -21,7 +46,6 @@ Rectangle {
     property alias cell14: cell14
     property alias cell13: cell13
     property alias cell12: cell12
-    property alias cell11: cell11
     property alias cell10: cell10
     property alias cell9: cell9
     property alias cell8: cell8
@@ -35,8 +59,6 @@ Rectangle {
     property alias grille: grille
     property alias game: game
 
-
-
     Rectangle {
         id: game
         x: 92
@@ -48,30 +70,7 @@ Rectangle {
         anchors.bottomMargin: 38
         anchors.horizontalCenter: parent.horizontalCenter
         //focus: vueJeu.resume                 //très important, permet de selectionner la zone qui réagit au onPressed
-        focus : true
-
-        Keys.onPressed:{
-            switch (event.key) {
-            case Qt.Key_Left:
-                vueJeu.deplGauche();
-                console.log("bouton gauche presse");
-                break;
-            case Qt.Key_Right:
-                vueJeu.deplDroite();
-                console.log("bouton droit presse");
-                break;
-            case Qt.Key_Up:
-                vueJeu.deplHaut();
-                console.log("bouton haut presse");
-                break;
-
-            case Qt.Key_Down:
-                vueJeu.deplBas();
-                console.log("bouton bas presse")
-                break;
-            }
-        }
-
+        focus: true
 
         Grid {
             id: grille
@@ -87,10 +86,6 @@ Rectangle {
             anchors.fill: parent
             columns: 4
 
-
-
-
-
             Rectangle {
                 id: cell1
                 color: vueJeu.states[16]
@@ -100,13 +95,11 @@ Rectangle {
 
                 Text {
                     id: textCell0
-                    text: vueJeu.states[0]
+                    text: "Cell0"
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.horizontalCenter: parent.horizontalCenter
                     font.pixelSize: 35
-
                 }
-
             }
             Rectangle {
                 id: cell2
@@ -117,12 +110,10 @@ Rectangle {
 
                 Text {
                     id: textCell1
-                    text: vueJeu.states[1]
+                    text: "Cell1"
                     font.pixelSize: 35
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
-
-
                 }
             }
 
@@ -135,7 +126,7 @@ Rectangle {
 
                 Text {
                     id: textCell2
-                    text: vueJeu.states[2]
+                    text: "Cell2"
                     font.pixelSize: 35
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
@@ -151,7 +142,7 @@ Rectangle {
 
                 Text {
                     id: textCell3
-                    text: vueJeu.states[3]
+                    text: "Cell3"
                     font.pixelSize: 35
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
@@ -167,7 +158,7 @@ Rectangle {
 
                 Text {
                     id: textCell4
-                    text: vueJeu.states[4]
+                    text: "Cell4"
                     font.pixelSize: 35
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
@@ -183,7 +174,7 @@ Rectangle {
 
                 Text {
                     id: textCell5
-                    text: vueJeu.states[5]
+                    text: "Cell5"
                     font.pixelSize: 35
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
@@ -199,7 +190,7 @@ Rectangle {
 
                 Text {
                     id: textCell6
-                    text: vueJeu.states[6]
+                    text: "Cell6"
                     font.pixelSize: 35
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
@@ -215,7 +206,7 @@ Rectangle {
 
                 Text {
                     id: textCell7
-                    text: vueJeu.states[7]
+                    text: "Cell7"
                     font.pixelSize: 35
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
@@ -231,7 +222,7 @@ Rectangle {
 
                 Text {
                     id: textCell8
-                    text: vueJeu.states[8]
+                    text: "Cell8"
                     font.pixelSize: 35
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
@@ -247,7 +238,7 @@ Rectangle {
 
                 Text {
                     id: textCell9
-                    text: vueJeu.states[9]
+                    text: "Cell9"
                     font.pixelSize: 35
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
@@ -263,7 +254,7 @@ Rectangle {
 
                 Text {
                     id: textCell10
-                    text: vueJeu.states[10]
+                    text: "Cell10"
                     font.pixelSize: 35
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
@@ -279,7 +270,7 @@ Rectangle {
 
                 Text {
                     id: textCell11
-                    text: vueJeu.states[11]
+                    text: "Cell11"
                     font.pixelSize: 35
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
@@ -295,7 +286,7 @@ Rectangle {
 
                 Text {
                     id: textCell12
-                    text: vueJeu.states[12]
+                    text: "Cell12"
                     font.pixelSize: 35
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
@@ -311,7 +302,7 @@ Rectangle {
 
                 Text {
                     id: textCell13
-                    text: vueJeu.states[13]
+                    text: "Cell13"
                     font.pixelSize: 35
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
@@ -327,7 +318,7 @@ Rectangle {
 
                 Text {
                     id: textCell14
-                    text: vueJeu.states[14]
+                    text: "Cell14"
                     font.pixelSize: 35
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
@@ -343,7 +334,7 @@ Rectangle {
 
                 Text {
                     id: textCell15
-                    text: vueJeu.states[15]
+                    text: "Cell15"
                     font.pixelSize: 35
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
@@ -376,7 +367,7 @@ Rectangle {
 
         Text {
             id: best_score
-            text: vueJeu.states[33]
+            text: "best score"
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 25
             anchors.top: parent.top
@@ -412,41 +403,13 @@ Rectangle {
 
         Text {
             id: resultat_jeu
-            text: vueJeu.states[32]
+            text: "score"
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 25
             anchors.top: parent.top
             anchors.horizontalCenterOffset: 0
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.topMargin: 30
-        }
-    }
-
-    Rectangle {
-        id: newGame
-        x: 360
-        width: 100
-        height: 50
-        color: "#894804"
-        anchors.top: parent.top
-        anchors.topMargin: 90
-        anchors.right: parent.right
-        anchors.rightMargin: 20
-
-        Text {
-            id: textNewGame
-            color: "#ffffff"
-            text: qsTr("New Game")
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
-            font.bold: true
-            font.pixelSize: 16
-        }
-
-        MouseArea {
-            id: boutonNewGame
-            anchors.fill: parent
-            onClicked: vueJeu.newGame(4,4)
         }
     }
 
@@ -467,6 +430,7 @@ Rectangle {
     Text {
         id: instructions
         text: qsTr("Join the numbers and get a 2048 tile !")
+        font.family: "Verdana"
         anchors.left: parent.left
         anchors.leftMargin: 20
         anchors.top: parent.top
@@ -474,7 +438,94 @@ Rectangle {
         font.pixelSize: 18
     }
 
+    Rectangle {
+        id: gameOver
+        color: "#f0ca81"
+        visible: false
+        opacity: 0.7
+        anchors.fill: parent
 
+        Text {
+            id: textGameOver
+            text: "Game Over !"
+            anchors.verticalCenterOffset: -60
+            font.italic: false
+            font.bold: true
+            font.family: "Verdana"
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+            font.pixelSize: 60
+
+            Text {
+                id: textTryAgain
+                x: 14
+                text: qsTr(" Try again ?")
+                anchors.top: parent.top
+                anchors.topMargin: 60
+                font.bold: true
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.pixelSize: 60
+            }
+        }
+    }
+
+    Rectangle {
+        id: undo
+        x: 360
+        width: 100
+        height: 50
+        color: "#894804"
+        anchors.top: parent.top
+        anchors.topMargin: 150
+        anchors.right: parent.right
+        anchors.rightMargin: 20
+
+        Text {
+            id: textUndo
+            color: "#ffffff"
+            text: qsTr("Undo")
+            font.bold: true
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            anchors.fill: parent
+            font.pixelSize: 16
+        }
+
+        MouseArea {
+            id: boutonUndo
+            anchors.fill: parent
+            hoverEnabled: true // on active la détection du passage de la souris
+        }
+    }
+
+    Rectangle {
+        id: newGame
+        x: 360
+        width: 100
+        height: 50
+        color: "#894804"
+        anchors.top: parent.top
+        anchors.topMargin: 90
+        anchors.right: parent.right
+        anchors.rightMargin: 20
+
+        Text {
+            id: textNewGame
+            color: "#ffffff"
+            text: qsTr("New Game")
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            anchors.fill: parent
+            font.bold: true
+            font.pixelSize: 16
+        }
+
+        MouseArea {
+            id: boutonNewGame
+            anchors.fill: parent
+            hoverEnabled: true // on active la détection du passage de la souris
+        }
+    }
 }
-
-

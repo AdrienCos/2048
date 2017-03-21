@@ -1,0 +1,12 @@
+Pour gérer le déplacement, créer une copie de travail (définir une méthode réalisant cela par une double boucle for), effectuer l'aglo d'avant dessus,
+et si on obtient 'aBouge == true', alors on remplace tableau[coupaActuel] par la copie de travail (définir une méthode pour cela ?)
+--> pas besoin de trop modifier les deplGauche/Droite/etc.
+--> faire une gestion dynamique de la copie de travail (new dans la méthode de copie, delete dans la méthode de remplacement)
+==> Done
+
+TODO : rajouter un moyen de vérifier quand coupActuel est trop proche de maxUndo, pour rajouter des cases au tableau (si on dépasse
+maxUndo avec coupActuel)
+
+Info : une pénalité de 16 points est appliquée à chaque Undo effectué par le joueur, pour éviter la triche
+
+TODO : animations de déplacement des Cells
