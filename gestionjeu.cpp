@@ -5,6 +5,8 @@ using namespace std;
 //Constructeur
 GestionJeu::GestionJeu(QObject *parent) : QObject(parent)
 {
+    maxUndo = 256;      // choix du nombre max de coups annulables
+    coupActuel = 0;
     alloc(4,4);
     score = 0;
     maxscore = 0;       // initialisation du score maximum
@@ -16,11 +18,21 @@ GestionJeu::GestionJeu(QObject *parent) : QObject(parent)
 void GestionJeu::newGame(int nb_lig, int nb_col)
 {
     free();     // liberation de memoire
+    coupActuel = 0;
     alloc(nb_lig, nb_col);
     maxscore = max(maxscore, score);       // conservation en mémoire du meilleur score
     score = 0;
     newCell();
     newCell();
+}
+
+// Annulation du coup précédent
+void GestionJeu::undo()
+{
+    if(coupActuel>0)
+    {
+        coupActuel--;
+    }
 }
 
 
@@ -194,6 +206,7 @@ void GestionJeu::deplGauche(){
     {
         newCell();
         statesChanged();
+        coupActuel += 1;    // on a joué un coup de plus
     }
 }
 
@@ -229,6 +242,7 @@ void GestionJeu::deplDroite(){
     {
         newCell();
         statesChanged();
+        coupActuel += 1;
     }
 }
 
@@ -263,6 +277,7 @@ void GestionJeu::deplHaut(){
     {
         newCell();
         statesChanged();
+        coupActuel += 1;
     }
 }
 
@@ -297,6 +312,8 @@ void GestionJeu::deplBas(){
     {
         newCell();
         statesChanged();
+        coupActuel += 1;
+        cout << coupActuel << endl;
     }
 }
 

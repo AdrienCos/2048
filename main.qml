@@ -4,8 +4,8 @@ import QtQuick.Dialogs 1.2
 
 ApplicationWindow {
     visible: true
-    width: 480
-    height: 680
+    width: 500
+    height: 720
     title: qsTr("Le 2048 d'Adrien et Alexandre")
 
     menuBar: MenuBar {

@@ -7,6 +7,9 @@ Rectangle {
     id: page
     width: 480
     height: 680
+    property alias boutonUndo: boutonUndo
+    property alias textUndo: textUndo
+    property alias undo: undo
     property alias boutonNewGame: boutonNewGame
     property alias instructions: instructions
     property alias titre2048: titre2048
@@ -35,8 +38,6 @@ Rectangle {
     property alias grille: grille
     property alias game: game
 
-
-
     Rectangle {
         id: game
         x: 92
@@ -48,31 +49,29 @@ Rectangle {
         anchors.bottomMargin: 38
         anchors.horizontalCenter: parent.horizontalCenter
         //focus: vueJeu.resume                 //très important, permet de selectionner la zone qui réagit au onPressed
-        focus : true
+        focus: true
 
-        Keys.onPressed:{
-            switch (event.key) {
-            case Qt.Key_Left:
-                vueJeu.deplGauche();
-                console.log("bouton gauche presse");
-                break;
-            case Qt.Key_Right:
-                vueJeu.deplDroite();
-                console.log("bouton droit presse");
-                break;
-            case Qt.Key_Up:
-                vueJeu.deplHaut();
-                console.log("bouton haut presse");
-                break;
+                Keys.onPressed:{
+                    switch (event.key) {
+                    case Qt.Key_Left:
+                        vueJeu.deplGauche();
+                        console.log("bouton gauche presse");
+                        break;
+                    case Qt.Key_Right:
+                        vueJeu.deplDroite();
+                        console.log("bouton droit presse");
+                        break;
+                    case Qt.Key_Up:
+                        vueJeu.deplHaut();
+                        console.log("bouton haut presse");
+                        break;
 
-            case Qt.Key_Down:
-                vueJeu.deplBas();
-                console.log("bouton bas presse")
-                break;
-            }
-        }
-
-
+                    case Qt.Key_Down:
+                        vueJeu.deplBas();
+                        console.log("bouton bas presse")
+                        break;
+                    }
+                }
         Grid {
             id: grille
             width: 424
@@ -87,10 +86,6 @@ Rectangle {
             anchors.fill: parent
             columns: 4
 
-
-
-
-
             Rectangle {
                 id: cell1
                 color: vueJeu.states[16]
@@ -104,9 +99,7 @@ Rectangle {
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.horizontalCenter: parent.horizontalCenter
                     font.pixelSize: 35
-
                 }
-
             }
             Rectangle {
                 id: cell2
@@ -121,8 +114,6 @@ Rectangle {
                     font.pixelSize: 35
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
-
-
                 }
             }
 
@@ -423,6 +414,35 @@ Rectangle {
     }
 
     Rectangle {
+        id: undo
+        x: 360
+        width: 100
+        height: 50
+        color: "#894804"
+        anchors.top: parent.top
+        anchors.topMargin: 150
+        anchors.right: parent.right
+        anchors.rightMargin: 20
+
+        Text {
+            id: textUndo
+            color: "#ffffff"
+            text: qsTr("Undo")
+            font.bold: true
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            anchors.fill: parent
+            font.pixelSize: 16
+        }
+
+        MouseArea {
+            id: boutonUndo
+            anchors.fill: parent
+            onClicked: vueJeu.undo()
+        }
+    }
+
+    Rectangle {
         id: newGame
         x: 360
         width: 100
@@ -437,8 +457,9 @@ Rectangle {
             id: textNewGame
             color: "#ffffff"
             text: qsTr("New Game")
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            anchors.fill: parent
             font.bold: true
             font.pixelSize: 16
         }
@@ -467,14 +488,11 @@ Rectangle {
     Text {
         id: instructions
         text: qsTr("Join the numbers and get a 2048 tile !")
+        font.family: "Verdana"
         anchors.left: parent.left
         anchors.leftMargin: 20
         anchors.top: parent.top
         anchors.topMargin: 117
         font.pixelSize: 18
     }
-
-
 }
-
-

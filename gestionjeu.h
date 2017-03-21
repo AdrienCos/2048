@@ -14,7 +14,11 @@ public:
 
     Q_PROPERTY(QList<QString> states READ readStates NOTIFY statesChanged)
 
+    // Méthode de création d'une nouvelle partie
     Q_INVOKABLE void newGame(int nb_lig, int nb_col);
+
+    // Méthode d'annulation du coup précédent
+    Q_INVOKABLE void undo();
 
     // Méthodes de déplacement
     Q_INVOKABLE void deplGauche();
@@ -30,7 +34,10 @@ private:
 
     int nb_lig;
     int nb_col;
-    int** tableau;          //matrice des valeurs des cellules
+    int** tableau;          //liste des valeurs des cellules
+
+    int maxUndo;        // nombre max d'undo réalisables à la suite
+    int coupActuel;     // suivi du numéro du coup actuel
 
     void free();
     void alloc(int nb_lig , int nb_col);
