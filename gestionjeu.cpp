@@ -388,7 +388,7 @@ void GestionJeu::deplHaut(){
             num_ligne=i;
             if(copieTableau[num_ligne-1][j]==0 && copieTableau[num_ligne][j]!=0){
                 while((num_ligne-1>=0) && (copieTableau[num_ligne-1][j]==0)){
-                    if(num_ligne>nb_lig){ cout<<"probleme"<<endl;}
+                    //if(num_ligne>nb_lig){ cout<<"probleme"<<endl;}
                     copieTableau[num_ligne-1][j]=value;
                     copieTableau[num_ligne][j]=0;
                     aBouge = true;
@@ -452,7 +452,7 @@ void GestionJeu::deplBas(){
         remplacementCoupSuivant(copieTableau);
         newCell();
         statesChanged();
-        cout << coupActuel << endl;
+        //cout << coupActuel << endl;
     }
     else
     {

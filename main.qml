@@ -60,20 +60,20 @@ ApplicationWindow {
             switch (event.key) {
             case Qt.Key_Left:
                 vueJeu.deplGauche();
-                console.log("bouton gauche presse");
+                //console.log("bouton gauche presse");
                 break;
             case Qt.Key_Right:
                 vueJeu.deplDroite();
-                console.log("bouton droit presse");
+                //console.log("bouton droit presse");
                 break;
             case Qt.Key_Up:
                 vueJeu.deplHaut();
-                console.log("bouton haut presse");
+                //console.log("bouton haut presse");
                 break;
 
             case Qt.Key_Down:
                 vueJeu.deplBas();
-                console.log("bouton bas presse")
+                //console.log("bouton bas presse")
                 break;
             }
         }
