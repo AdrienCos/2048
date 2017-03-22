@@ -10,3 +10,9 @@ maxUndo avec coupActuel)
 Info : une pénalité de 16 points est appliquée à chaque Undo effectué par le joueur, pour éviter la triche
 
 TODO : animations de déplacement des Cells
+--> quel déplacement exactement ?
+
+Le code QML concernant le texte de gameover se situe dans main.qml pour pouvoir conserver le MainForm.ui.qml éditable graphiquement
+
+La coloration d'une case de fait en utilisant le log en base 2 de la valeur de la case, qui renvoie l'indice ou aller chercher la
+couleur à utiliser dans couleurs[couleurActuelle] : 2 renvoie 0, 4 renvoie 1, etc.

@@ -21,6 +21,9 @@ public:
     // Méthode d'annulation du coup précédent
     Q_INVOKABLE void undo();
 
+    // Méthode de changement du set de couleurs
+    Q_INVOKABLE void swapColors();
+
     // Méthodes de création et suppression de copie de travail de tableau[coupActuel]
     int** copieActuel();
     void remplacementCoupSuivant(int** copieTableau);
@@ -35,12 +38,18 @@ public:
     QList<QString> readStates();
     bool perdu();     // permet de savoir si la partie est perdue
 
+    // Méthode d'initialisation de la liste de couleurs
+    void initCouleurs();
 
 private:
 
     int nb_lig;
     int nb_col;
     int*** tableau;          //liste des valeurs des cellules
+    QString** couleurs; // tableau des couleurs disponibles
+    int couleursActuelles; // position des couleurs utilisées
+    int nbJeuxCouleurs = 3;     // nombre de jeux de couleurs
+    int nbCouleursParJeu = 11;   // nombre de couleurs par jeu
 
     int maxUndo;        // nombre max d'undo réalisables à la suite
     int coupActuel;     // suivi du numéro du coup actuel

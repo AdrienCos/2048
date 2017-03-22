@@ -7,9 +7,9 @@ Rectangle {
     id: page
     width: 480
     height: 680
-    property alias textTryAgain: textTryAgain
-    property alias textGameOver: textGameOver
-    property alias gameOver: gameOver
+    property alias swapColor: swapColor
+    property alias boutonSwapColor: boutonSwapColor
+    property alias textSwapColor: textSwapColor
     property alias textCell0: textCell0
     property alias textCell1: textCell1
     property alias textCell2: textCell2
@@ -66,6 +66,7 @@ Rectangle {
         width: 440
         height: 440
         color: "#685759"
+        radius: 7
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 38
         anchors.horizontalCenter: parent.horizontalCenter
@@ -439,44 +440,14 @@ Rectangle {
     }
 
     Rectangle {
-        id: gameOver
-        color: "#f0ca81"
-        visible: false
-        opacity: 0.7
-        anchors.fill: parent
-
-        Text {
-            id: textGameOver
-            text: "Game Over !"
-            anchors.verticalCenterOffset: -60
-            font.italic: false
-            font.bold: true
-            font.family: "Verdana"
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment: Text.AlignHCenter
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.horizontalCenter: parent.horizontalCenter
-            font.pixelSize: 60
-
-            Text {
-                id: textTryAgain
-                x: 14
-                text: qsTr(" Try again ?")
-                anchors.top: parent.top
-                anchors.topMargin: 60
-                font.bold: true
-                anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: 60
-            }
-        }
-    }
-
-    Rectangle {
         id: undo
         x: 360
         width: 100
         height: 50
         color: "#894804"
+        radius: 6
+        border.color: "#00000000"
+        border.width: 3
         anchors.top: parent.top
         anchors.topMargin: 150
         anchors.right: parent.right
@@ -506,6 +477,8 @@ Rectangle {
         width: 100
         height: 50
         color: "#894804"
+        radius: 6
+        border.color: "#00000000"
         anchors.top: parent.top
         anchors.topMargin: 90
         anchors.right: parent.right
@@ -526,6 +499,37 @@ Rectangle {
             id: boutonNewGame
             anchors.fill: parent
             hoverEnabled: true // on active la détection du passage de la souris
+        }
+    }
+
+    Rectangle {
+        id: swapColor
+        x: 231
+        width: 150
+        height: 50
+        color: "#894804"
+        radius: 6
+        border.color: "#00000000"
+        anchors.top: parent.top
+        anchors.topMargin: 150
+        anchors.right: parent.right
+        anchors.rightMargin: 130
+
+        Text {
+            id: textSwapColor
+            color: "#ffffff"
+            text: qsTr("Swap Colors")
+            font.bold: true
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            anchors.fill: parent
+            font.pixelSize: 16
+        }
+
+        MouseArea {
+            id: boutonSwapColor
+            hoverEnabled: true
+            anchors.fill: parent
         }
     }
 }

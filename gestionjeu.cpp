@@ -1,12 +1,15 @@
 #include "gestionjeu.h"
 #include <iostream>
+#include <math.h>
 using namespace std;
 
 //Constructeur
 GestionJeu::GestionJeu(QObject *parent) : QObject(parent)
 {
-    maxUndo = 1024;      // choix du nombre max de coups annulables, si on joue plus que ce nombre de coup, on crash
+    maxUndo = 2048;      // choix du nombre max de coups annulables, si on joue plus que ce nombre de coup, on crash
     coupActuel = 0;
+    couleursActuelles = 0;
+    initCouleurs();
     alloc(4,4);
     score = 0;
     maxscore = 0;       // initialisation du score maximum
@@ -27,6 +30,60 @@ void GestionJeu::newGame(int nb_lig, int nb_col)
     perduChanged();
 }
 
+// Initialisation de la liste des couleurs
+void GestionJeu::initCouleurs()
+{
+    // Allocation de la liste des couleurs
+    couleurs = new QString*[nbJeuxCouleurs];
+    for (int i=0 ; i<nbJeuxCouleurs ; i++)
+    {
+        couleurs[i] = new QString[nbCouleursParJeu];
+        for(int j=0; j<nbCouleursParJeu;j++)
+        {
+            couleurs[i][j]="";
+        }
+    }
+    // Remplissage du tableau
+    // Premier set de couleurs
+    couleurs[0][0] = "#ece2d8"; // 2
+    couleurs[0][1] = "#ede0c7"; // 4
+    couleurs[0][2] = "#f2b179"; //...
+    couleurs[0][3] = "#f59563";
+    couleurs[0][4] = "#f97c60";
+    couleurs[0][5] = "#f65e3c";
+    couleurs[0][6] = "#ecce6e";
+    couleurs[0][7] = "#eccb61"; // ...
+    couleurs[0][8] = "#edc750"; // 512
+    couleurs[0][9] = "#edc440"; // 1024
+    couleurs[0][10] = "#ecc12d"; // 2048
+
+    // Second set de couleurs
+    couleurs[1][0] = "#5b5b83"; // 2
+    couleurs[1][1] = "#44449f"; // 4
+    couleurs[1][2] = "#4b4ac8"; //...
+    couleurs[1][3] = "#8484fb";
+    couleurs[1][4] = "#a6a6f7";
+    couleurs[1][5] = "#adadde";
+    couleurs[1][6] = "#575738";
+    couleurs[1][7] = "#a6a64a"; // ...
+    couleurs[1][8] = "#95955d"; // 512
+    couleurs[1][9] = "#efef32"; // 1024
+    couleurs[1][10] = "#e2e284"; // 2048
+
+    // Troisième set de couleurs
+    couleurs[2][0] = "#5c707b"; // 2
+    couleurs[2][1] = "#42b5a6"; // 4
+    couleurs[2][2] = "#9d600f"; //...
+    couleurs[2][3] = "#b92c92";
+    couleurs[2][4] = "#ffd203";
+    couleurs[2][5] = "#00abd6";
+    couleurs[2][6] = "#018752";
+    couleurs[2][7] = "#ff6d00"; // ...
+    couleurs[2][8] = "#c6d601"; // 512
+    couleurs[2][9] = "#00457c"; // 1024
+    couleurs[2][10] = "#f3426e"; // 2048
+}
+
 // Annulation du coup précédent
 void GestionJeu::undo()
 {
@@ -37,6 +94,14 @@ void GestionJeu::undo()
         statesChanged();
         perduChanged();     // annule un éventuel Game Over
     }
+}
+
+// Changement du set de couleurs
+void GestionJeu::swapColors()
+{
+    couleursActuelles++;
+    couleursActuelles %= nbJeuxCouleurs;        // on évite de dépasser l'index de couleurs
+    statesChanged();
 }
 
 
@@ -128,45 +193,13 @@ QList<QString> GestionJeu::readStates()
     {
         for (int j = 0 ; j<nb_col ; j++)
         {
-            if (tableau[coupActuel][i][j]==2)
+            if (tableau[coupActuel][i][j] == 0 || (tableau[coupActuel][i][j] > (pow(2,nbCouleursParJeu-1))))
             {
-                liste.append("#ece2d8");
-            }
-            else if(tableau[coupActuel][i][j]==4)
-            {
-                liste.append("#eadec6");
-            }
-            else if(tableau[coupActuel][i][j] == 8)
-            {
-                liste.append("#f0b17a");
-            }
-            else if(tableau[coupActuel][i][j] == 16)
-            {
-                liste.append("#F49563");
-            }
-            else if(tableau[coupActuel][i][j] == 32)
-            {
-                liste.append("#F57E61");
-            }
-            else if(tableau[coupActuel][i][j] == 64)
-            {
-                liste.append("#F55F3C");
-            }
-            else if(tableau[coupActuel][i][j] == 128)
-            {
-                liste.append("#EDCF75");
-            }
-            else if(tableau[coupActuel][i][j] == 256)
-            {
-                liste.append("#EDCF5B");
-            }
-            else if(tableau[coupActuel][i][j] == 512)
-            {
-                liste.append("#ECC955");
+                liste.append("#b48f8f");        // la case est vide ou comporte une couleur non supportée
             }
             else
             {
-                liste.append("#b48f8f");
+                liste.append(couleurs[couleursActuelles][(int)log2(tableau[coupActuel][i][j])-1]); // on colorie la case avec la bonne couleur
             }
         }
     }
