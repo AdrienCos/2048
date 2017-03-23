@@ -100,6 +100,11 @@ ApplicationWindow {
         textCell13.text : vueJeu.states[13]
         textCell14.text : vueJeu.states[14]
         textCell15.text : vueJeu.states[15]
+
+        // Désactivation des boutons quand l'écran de Game Over est présent
+        boutonNewGame.enabled: !vueJeu.perdu
+        boutonUndo.enabled: !vueJeu.perdu
+        boutonSwapColor.enabled: !vueJeu.perdu
     }
 
     Rectangle {     // la page de game over est mise ici pour conserver un fichier.ui éditable
@@ -133,10 +138,82 @@ ApplicationWindow {
                 font.pixelSize: 60
             }
         }
+        Rectangle {
+            id: retry
+            x: 360
+            width: 150
+            height: 80
+            color: "#894804"
+            radius: 6
+            border.color: "#00000000"
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.verticalCenterOffset : 110
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.horizontalCenterOffset: -100
+
+            Text {
+                id: textRetry
+                color: "#ffffff"
+                text: qsTr("Try Again")
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                anchors.fill: parent
+                font.bold: true
+                font.pixelSize: 25
+            }
+
+            MouseArea {
+                id: boutonRetry
+                anchors.fill: parent
+                hoverEnabled: true // on active la détection du passage de la souris
+                enabled: vueJeu.perdu
+                onClicked: vueJeu.newGame(4,4)
+                onEntered: retry.color = "#af4804"
+                onExited: retry.color = "#894804"
+                onPressed: retry.color = "#794804"
+                onReleased: retry.color = "#af4804"
+            }
+        }
+        Rectangle {
+            id: quit
+            x: 360
+            width: 150
+            height: 80
+            color: "#894804"
+            radius: 6
+            border.color: "#00000000"
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.verticalCenterOffset : 110
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.horizontalCenterOffset: 100
+
+            Text {
+                id: textQuit
+                color: "#ffffff"
+                text: qsTr("Exit")
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                anchors.fill: parent
+                font.bold: true
+                font.pixelSize: 25
+            }
+
+            MouseArea {
+                id: boutonQuit
+                anchors.fill: parent
+                hoverEnabled: true // on active la détection du passage de la souris
+                enabled: vueJeu.perdu
+                onClicked: Qt.quit()
+                onEntered: quit.color = "#af4804"
+                onExited: quit.color = "#894804"
+                onPressed: quit.color = "#794804"
+                onReleased: quit.color = "#af4804"
+            }
+        }
         states: [
                     State {
                         name : "GameOver"; when : vueJeu.perdu
-                        PropertyChanges {target: gameOver; opacity : 0.7 }
+                        PropertyChanges {target: gameOver; opacity : 0.85 }
                     },
                     State {
                         name: "noGameOver"; when: !vueJeu.perdu
