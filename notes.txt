@@ -16,3 +16,8 @@ Le code QML concernant le texte de gameover se situe dans main.qml pour pouvoir 
 
 La coloration d'une case de fait en utilisant le log en base 2 de la valeur de la case, qui renvoie l'indice ou aller chercher la
 couleur à utiliser dans couleurs[couleurActuelle] : 2 renvoie 0, 4 renvoie 1, etc.
+
+Les boutons sont actifs ou non en fonction selon l'état du GameOver : quand la partie est perdue, New Game, Undo et Swap Color sont
+désactivés, tandis que Try Again et Quit s'activent
+
+Bug : revoir le GameOver, qui se déclenche parfois au mauvais moment

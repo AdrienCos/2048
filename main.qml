@@ -23,8 +23,23 @@ ApplicationWindow {
         Menu {
             title: qsTr("Help")
             MenuItem {
-                text : qsTr("A propos...")
-                onTriggered: messageDialog.show(qsTr("Programme créé par Alexandre Cartier et Adrien Cosson"))
+                text: qsTr ("How to play")
+                onTriggered: {
+                    messageDialog.title = qsTr("How to play")
+                    messageDialog.show(qsTr("Use the arrow keys or the ZQSD keys to move the tiles around.
+When to tiles of identical value collide, they merge into a tile of twice the value.
+After each move, a new tile will apprear on the board, either 2 or a 4.
+
+Try to reach the 2048 tile ! Good luck"))
+                }
+            }
+
+            MenuItem {
+                text : qsTr("About...")
+                onTriggered: {
+                    messageDialog.title = qsTr("About...")
+                    messageDialog.show(qsTr("Game created by Alexandre Cartier and Adrien Cosson"))
+                }
             }
         }
     }
@@ -83,8 +98,9 @@ ApplicationWindow {
         resultat_jeu.text: vueJeu.states[32]
 
         // Gestion des textes des cells (sert surtout à clarifier l'interface graphique
-        // d'édition de MainForm.ui.qml
+        // d'édition de MainForm.ui.qml)
         textCell0.text : vueJeu.states[0]
+        //textCell0.color: (0xffffff - vueJeu.states[0])
         textCell1.text : vueJeu.states[1]
         textCell2.text : vueJeu.states[2]
         textCell3.text : vueJeu.states[3]
@@ -211,15 +227,15 @@ ApplicationWindow {
             }
         }
         states: [
-                    State {
-                        name : "GameOver"; when : vueJeu.perdu
-                        PropertyChanges {target: gameOver; opacity : 0.85 }
-                    },
-                    State {
-                        name: "noGameOver"; when: !vueJeu.perdu
-                        PropertyChanges {target: gameOver; opacity:0.0}
-                    }
-                ]
+            State {
+                name : "GameOver"; when : vueJeu.perdu
+                PropertyChanges {target: gameOver; opacity : 0.85 }
+            },
+            State {
+                name: "noGameOver"; when: !vueJeu.perdu
+                PropertyChanges {target: gameOver; opacity:0.0}
+            }
+        ]
         transitions: [
             Transition {
                 from: "noGameOver"
@@ -234,12 +250,23 @@ ApplicationWindow {
         ]
     }
 
-    MessageDialog {
+    Dialog {
         id: messageDialog
         title: qsTr("May I have your attention, please?")
+        height: 100
+        width: 100
+        Label {
+            id:label
+            text: "Hello blue sky!"
+            color: "black"
+            anchors.centerIn: parent
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            font.pixelSize: 16
+        }
 
         function show(caption) {
-            messageDialog.text = caption;
+            label.text = caption;
             messageDialog.open();
         }
     }
