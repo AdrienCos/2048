@@ -85,10 +85,28 @@ Try to reach the 2048 tile ! Good luck"))
                 vueJeu.deplHaut();
                 //console.log("bouton haut presse");
                 break;
-
             case Qt.Key_Down:
                 vueJeu.deplBas();
                 //console.log("bouton bas presse")
+                break;
+            case Qt.Key_Q:
+                vueJeu.deplGauche();
+                //console.log("bouton gauche presse");
+                break;
+            case Qt.Key_D:
+                vueJeu.deplDroite();
+                //console.log("bouton droit presse");
+                break;
+            case Qt.Key_Z:
+                vueJeu.deplHaut();
+                //console.log("bouton haut presse");
+                break;
+            case Qt.Key_S:
+                vueJeu.deplBas();
+                //console.log("bouton bas presse")
+                break;
+            case Qt.Key_P:      // demande de game over immédiat
+                vueJeu.defaite();
                 break;
             }
         }
@@ -240,7 +258,7 @@ Try to reach the 2048 tile ! Good luck"))
             Transition {
                 from: "noGameOver"
                 to: "GameOver"
-                NumberAnimation { properties: "opacity"; easing.type: Easing.InOutQuad; duration: 1000 }
+                NumberAnimation { easing.amplitude: 1.5; properties: "opacity"; easing.type: Easing.OutBounce; duration: 1000 }
             },
             Transition {
                 from: "GameOver"

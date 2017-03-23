@@ -28,6 +28,7 @@ void GestionJeu::newGame(int nb_lig, int nb_col)
     newCell();
     newCell();
     perduChanged();
+    defaite();      // pour enlever l'écran de game over si on l'a invoqué avec P
 }
 
 // Initialisation de la liste des couleurs
@@ -226,7 +227,7 @@ bool GestionJeu::perdu()
                 existNeighbour = true; // ... on a trouvé des voisins identiques
             }
         }
-        // on traite maintenant la case en bas à droite
+        // on traite maintenant la case en bas à droite de la grille
         if ((tableau[coupActuel][nb_lig-1][nb_col-1] == tableau[coupActuel][nb_lig-2][nb_col-1]) || (tableau[coupActuel][nb_lig-1][nb_col-1] == tableau[coupActuel][nb_lig-1][nb_col-2]))
         {
             existNeighbour = true;
@@ -248,6 +249,19 @@ bool GestionJeu::perdu()
         return isFull;
     }
     else        // deux cases voisines sont identiques, la partie n'est pas perdue
+    {
+        return false;
+    }
+}
+
+// Méthode de test servant à invoquer un écran de Game Over sans avoir à perdre réellement
+bool GestionJeu::defaiteRequest()
+{
+    if (coupActuel>0)
+    {
+        return true;
+    }
+    else
     {
         return false;
     }
