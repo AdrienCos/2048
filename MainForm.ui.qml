@@ -10,23 +10,7 @@ Rectangle {
     property alias swapColor: swapColor
     property alias boutonSwapColor: boutonSwapColor
     property alias textSwapColor: textSwapColor
-    property alias textCell0: textCell0
-    property alias textCell1: textCell1
-    property alias textCell2: textCell2
-    property alias textCell3: textCell3
     property alias cell11: cell11
-    property alias textCell8: textCell8
-    property alias textCell7: textCell7
-    property alias textCell4: textCell4
-    property alias textCell5: textCell5
-    property alias textCell6: textCell6
-    property alias textCell15: textCell15
-    property alias textCell14: textCell14
-    property alias textCell13: textCell13
-    property alias textCell12: textCell12
-    property alias textCell11: textCell11
-    property alias textCell10: textCell10
-    property alias textCell9: textCell9
     property alias resultat_jeu: resultat_jeu
     property alias best_score: best_score
     property alias boutonUndo: boutonUndo
@@ -87,259 +71,101 @@ Rectangle {
             anchors.fill: parent
             columns: 4
 
-            Rectangle {
+            Cell {
                 id: cell1
-                color: vueJeu.states[16]
-                radius: 6
-                width: 100
-                height: 100
+                color : vueJeu.states[16]
+                textBack: vueJeu.states[0]
 
-                Text {
-                    id: textCell0
-                    text: "Cell0"
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    font.pixelSize: 35
-                }
             }
-            Rectangle {
+
+            Cell {
                 id: cell2
                 color: vueJeu.states[17]
-                radius: 6
-                width: 100
-                height: 100
-
-                Text {
-                    id: textCell1
-                    text: "Cell1"
-                    font.pixelSize: 35
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
-                }
+                textBack: vueJeu.states[1]
             }
 
-            Rectangle {
+            Cell {
                 id: cell3
-                width: 100
-                height: 100
                 color: vueJeu.states[18]
-                radius: 6
-
-                Text {
-                    id: textCell2
-                    text: "Cell2"
-                    font.pixelSize: 35
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
-                }
+                textBack: vueJeu.states[2]
             }
 
-            Rectangle {
+            Cell {
                 id: cell4
-                width: 100
-                height: 100
                 color: vueJeu.states[19]
-                radius: 6
-
-                Text {
-                    id: textCell3
-                    text: "Cell3"
-                    font.pixelSize: 35
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
-                }
+                textBack: vueJeu.states[3]
             }
 
-            Rectangle {
+            Cell {
                 id: cell5
-                width: 100
-                height: 100
                 color: vueJeu.states[20]
-                radius: 6
-
-                Text {
-                    id: textCell4
-                    text: "Cell4"
-                    font.pixelSize: 35
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
-                }
+                textBack: vueJeu.states[4]
             }
 
-            Rectangle {
+            Cell {
                 id: cell6
-                width: 100
-                height: 100
                 color: vueJeu.states[21]
-                radius: 6
-
-                Text {
-                    id: textCell5
-                    text: "Cell5"
-                    font.pixelSize: 35
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
-                }
+                textBack: vueJeu.states[5]
             }
 
-            Rectangle {
+            Cell {
                 id: cell7
-                width: 100
-                height: 100
                 color: vueJeu.states[22]
-                radius: 6
-
-                Text {
-                    id: textCell6
-                    text: "Cell6"
-                    font.pixelSize: 35
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
-                }
+                textBack: vueJeu.states[6]
             }
 
-            Rectangle {
+            Cell {
                 id: cell8
-                width: 100
-                height: 100
                 color: vueJeu.states[23]
-                radius: 6
-
-                Text {
-                    id: textCell7
-                    text: "Cell7"
-                    font.pixelSize: 35
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
-                }
+                textBack: vueJeu.states[7]
             }
 
-            Rectangle {
+            Cell {
                 id: cell9
-                width: 100
-                height: 100
                 color: vueJeu.states[24]
-                radius: 6
-
-                Text {
-                    id: textCell8
-                    text: "Cell8"
-                    font.pixelSize: 35
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
-                }
+                textBack: vueJeu.states[8]
             }
 
-            Rectangle {
+            Cell {
                 id: cell10
-                width: 100
-                height: 100
                 color: vueJeu.states[25]
-                radius: 6
-
-                Text {
-                    id: textCell9
-                    text: "Cell9"
-                    font.pixelSize: 35
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
-                }
+                textBack: vueJeu.states[9]
             }
 
-            Rectangle {
+            Cell {
                 id: cell11
-                width: 100
-                height: 100
                 color: vueJeu.states[26]
-                radius: 6
-
-                Text {
-                    id: textCell10
-                    text: "Cell10"
-                    font.pixelSize: 35
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
-                }
+                textBack: vueJeu.states[10]
             }
 
-            Rectangle {
+            Cell {
                 id: cell12
-                width: 100
-                height: 100
                 color: vueJeu.states[27]
-                radius: 6
-
-                Text {
-                    id: textCell11
-                    text: "Cell11"
-                    font.pixelSize: 35
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
-                }
+                textBack: vueJeu.states[11]
             }
 
-            Rectangle {
+            Cell {
                 id: cell13
-                width: 100
-                height: 100
                 color: vueJeu.states[28]
-                radius: 6
-
-                Text {
-                    id: textCell12
-                    text: "Cell12"
-                    font.pixelSize: 35
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
-                }
+                textBack: vueJeu.states[12]
             }
 
-            Rectangle {
+            Cell {
                 id: cell14
-                width: 100
-                height: 100
                 color: vueJeu.states[29]
-                radius: 6
-
-                Text {
-                    id: textCell13
-                    text: "Cell13"
-                    font.pixelSize: 35
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
-                }
+                textBack: vueJeu.states[13]
             }
 
-            Rectangle {
+            Cell {
                 id: cell15
-                width: 100
-                height: 100
                 color: vueJeu.states[30]
-                radius: 6
-
-                Text {
-                    id: textCell14
-                    text: "Cell14"
-                    font.pixelSize: 35
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
-                }
+                textBack: vueJeu.states[14]
             }
 
-            Rectangle {
+            Cell {
                 id: cell16
-                width: 100
-                height: 100
                 color: vueJeu.states[31]
-                radius: 6
-
-                Text {
-                    id: textCell15
-                    text: "Cell15"
-                    font.pixelSize: 35
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
-                }
+                textBack: vueJeu.states[15]
             }
         }
     }
@@ -452,6 +278,7 @@ Rectangle {
         anchors.topMargin: 150
         anchors.right: parent.right
         anchors.rightMargin: 20
+        Behavior on color { ColorAnimation {duration : 150}}
 
         Text {
             id: textUndo
@@ -483,6 +310,7 @@ Rectangle {
         anchors.topMargin: 90
         anchors.right: parent.right
         anchors.rightMargin: 20
+        Behavior on color { ColorAnimation {duration : 150}}
 
         Text {
             id: textNewGame
@@ -514,6 +342,7 @@ Rectangle {
         anchors.topMargin: 150
         anchors.right: parent.right
         anchors.rightMargin: 130
+        Behavior on color { ColorAnimation {duration : 150}}
 
         Text {
             id: textSwapColor

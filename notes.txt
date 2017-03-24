@@ -1,23 +1,30 @@
-Pour gérer le déplacement, créer une copie de travail (définir une méthode réalisant cela par une double boucle for), effectuer l'aglo d'avant dessus,
+Info : Pour gérer le déplacement, créer une copie de travail (définir une méthode réalisant cela par une double boucle for), effectuer l'aglo d'avant dessus,
 et si on obtient 'aBouge == true', alors on remplace tableau[coupaActuel] par la copie de travail (définir une méthode pour cela ?)
 --> pas besoin de trop modifier les deplGauche/Droite/etc.
 --> faire une gestion dynamique de la copie de travail (new dans la méthode de copie, delete dans la méthode de remplacement)
-==> Done
+
+
+Info : une pénalité de 16 points est appliquée à chaque Undo effectué par le joueur, pour éviter la triche
+
+Info : Le code QML concernant le texte de gameover se situe dans main.qml pour pouvoir conserver le MainForm.ui.qml éditable graphiquement
+
+Info : La coloration d'une case de fait en utilisant le log en base 2 de la valeur de la case, qui renvoie l'indice ou aller chercher la
+couleur à utiliser dans couleurs[couleurActuelle] : 2 renvoie 0, 4 renvoie 1, etc.
+
+Info : Les boutons sont actifs ou non en fonction selon l'état du GameOver : quand la partie est perdue, New Game, Undo et Swap Color sont
+désactivés, tandis que Try Again et Quit s'activent
+
+Bug : revoir le GameOver, qui se déclenche parfois au mauvais moment
+
+Bug : quand on joue trop vite, deux cases spawnent au meme endroit à la suite
 
 TODO : rajouter un moyen de vérifier quand coupActuel est trop proche de maxUndo, pour rajouter des cases au tableau (si on dépasse
 maxUndo avec coupActuel)
 
-Info : une pénalité de 16 points est appliquée à chaque Undo effectué par le joueur, pour éviter la triche
+TODO : rajouter deux valeurs dans states : déplacement x et déplacement y
 
-TODO : animations de déplacement des Cells
---> quel déplacement exactement ?
+TODO : changer la couleur du texte pour qu'elle soit toujours opposée au fond de la cellule
 
-Le code QML concernant le texte de gameover se situe dans main.qml pour pouvoir conserver le MainForm.ui.qml éditable graphiquement
+TODO : créer un fichier Bouton.qml pour gérer les boutons proprement
 
-La coloration d'une case de fait en utilisant le log en base 2 de la valeur de la case, qui renvoie l'indice ou aller chercher la
-couleur à utiliser dans couleurs[couleurActuelle] : 2 renvoie 0, 4 renvoie 1, etc.
-
-Les boutons sont actifs ou non en fonction selon l'état du GameOver : quand la partie est perdue, New Game, Undo et Swap Color sont
-désactivés, tandis que Try Again et Quit s'activent
-
-Bug : revoir le GameOver, qui se déclenche parfois au mauvais moment
+TODO : rajouter la rotation des valeurs selon la direction du déplacement
