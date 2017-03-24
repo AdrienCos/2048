@@ -73,6 +73,8 @@ Rectangle {
 
             Cell {
                 id: cell1
+                sensx: vueJeu.states[34]
+                sensy: vueJeu.states[35]
                 color : vueJeu.states[16]
                 textBack: vueJeu.states[0]
 
@@ -80,90 +82,120 @@ Rectangle {
 
             Cell {
                 id: cell2
+                sensx: vueJeu.states[34]
+                sensy: vueJeu.states[35]
                 color: vueJeu.states[17]
                 textBack: vueJeu.states[1]
             }
 
             Cell {
                 id: cell3
+                sensx: vueJeu.states[34]
+                sensy: vueJeu.states[35]
                 color: vueJeu.states[18]
                 textBack: vueJeu.states[2]
             }
 
             Cell {
                 id: cell4
+                sensx: vueJeu.states[34]
+                sensy: vueJeu.states[35]
                 color: vueJeu.states[19]
                 textBack: vueJeu.states[3]
             }
 
             Cell {
                 id: cell5
+                sensx: vueJeu.states[34]
+                sensy: vueJeu.states[35]
                 color: vueJeu.states[20]
                 textBack: vueJeu.states[4]
             }
 
             Cell {
                 id: cell6
+                sensx: vueJeu.states[34]
+                sensy: vueJeu.states[35]
                 color: vueJeu.states[21]
                 textBack: vueJeu.states[5]
             }
 
             Cell {
                 id: cell7
+                sensx: vueJeu.states[34]
+                sensy: vueJeu.states[35]
                 color: vueJeu.states[22]
                 textBack: vueJeu.states[6]
             }
 
             Cell {
                 id: cell8
+                sensx: vueJeu.states[34]
+                sensy: vueJeu.states[35]
                 color: vueJeu.states[23]
                 textBack: vueJeu.states[7]
             }
 
             Cell {
                 id: cell9
+                sensx: vueJeu.states[34]
+                sensy: vueJeu.states[35]
                 color: vueJeu.states[24]
                 textBack: vueJeu.states[8]
             }
 
             Cell {
                 id: cell10
+                sensx: vueJeu.states[34]
+                sensy: vueJeu.states[35]
                 color: vueJeu.states[25]
                 textBack: vueJeu.states[9]
             }
 
             Cell {
                 id: cell11
+                sensx: vueJeu.states[34]
+                sensy: vueJeu.states[35]
                 color: vueJeu.states[26]
                 textBack: vueJeu.states[10]
             }
 
             Cell {
                 id: cell12
+                sensx: vueJeu.states[34]
+                sensy: vueJeu.states[35]
                 color: vueJeu.states[27]
                 textBack: vueJeu.states[11]
             }
 
             Cell {
                 id: cell13
+                sensx: vueJeu.states[34]
+                sensy: vueJeu.states[35]
                 color: vueJeu.states[28]
                 textBack: vueJeu.states[12]
             }
 
             Cell {
                 id: cell14
+                sensx: vueJeu.states[34]
+                sensy: vueJeu.states[35]
                 color: vueJeu.states[29]
                 textBack: vueJeu.states[13]
             }
 
             Cell {
                 id: cell15
+                sensx: vueJeu.states[34]
+                sensy: vueJeu.states[35]
                 color: vueJeu.states[30]
                 textBack: vueJeu.states[14]
             }
 
             Cell {
                 id: cell16
+                sensx: vueJeu.states[34]
+                sensy: vueJeu.states[35]
                 color: vueJeu.states[31]
                 textBack: vueJeu.states[15]
             }

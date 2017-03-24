@@ -25,10 +25,13 @@ void GestionJeu::newGame(int nb_lig, int nb_col)
     alloc(nb_lig, nb_col);
     maxscore = max(maxscore, score);       // conservation en mémoire du meilleur score
     score = 0;
-    newCell();
-    newCell();
+    xdir = 0;       // reset de la dernière direction de déplacement
+    ydir = 0;       // idem
     perduChanged();
     defaite();      // pour enlever l'écran de game over si on l'a invoqué avec P
+    statesChanged();
+    newCell();
+    newCell();
 }
 
 // Initialisation de la liste des couleurs
@@ -171,7 +174,8 @@ void GestionJeu::remplacementCoupSuivant(int** copieTableau)
 }
 
 // Appel de cette fonction suite au signal statesChanged
-// Transmet les valeurs des cases et les scores
+// Aggrège les valeurs de toutes les variables utilisées dans le QML
+// Transmet ces valeurs au QML
 QList<QString> GestionJeu::readStates()
 {
     QList<QString> liste;
@@ -206,6 +210,8 @@ QList<QString> GestionJeu::readStates()
     }
     liste.append((QString::number(score)));     // on transmet aussi le score actuel ...
     liste.append((QString::number(maxscore)));  // ... et le score max
+    liste.append((QString::number(xdir)));      // on transmet le sens de déplacement vertical...
+    liste.append((QString::number(ydir)));      // ... et horizontal
     return liste;
 }
 
@@ -277,6 +283,8 @@ void GestionJeu::newCell()
     int j = 0;
     int num = 0;    // variable pour le choix de la valeur de la nouvelle case
     srand(time(0));     // initialisation du seed de manière pseudo-aléatoire
+    int old_xdir = xdir;
+    int old_ydir = ydir;
     while(!trouve)
     {
         i = rand()%nb_lig;  // entier aleatoire entre 0 et nb_lig
@@ -297,7 +305,11 @@ void GestionJeu::newCell()
         tableau[coupActuel][i][j]=2;
         //tableau[i][j].setColor("#fc9e9e");
     }
+    xdir = 0;       // on ne fait pas pivoter les nouvelles cellules lors de leur apparition
+    ydir = 0;
     statesChanged();
+    xdir = old_xdir;    // on remet la valeur de la rotation des autres cellules à sa valeur précédente
+    ydir = old_ydir;    // cela n'est peut etre meme pas nécessaire, à vérifer
     //sinon, on ne peut plus remplir, donc on arrête on arrête la partie en verifiant si c'est gagné ou perdu
     //mais il est possible qu'on soit arriver ici parce qu'une direction n'est plus possible
     //cad à gauche: ça ne bouge plus, par contre vers le bas c'est possible
@@ -340,6 +352,8 @@ void GestionJeu::deplGauche(){
     {
         coupActuel += 1;    // on a joué un coup de plus
         remplacementCoupSuivant(copieTableau);
+        xdir = 0;
+        ydir = -1;
         newCell();
         statesChanged();
     }
@@ -382,6 +396,8 @@ void GestionJeu::deplDroite(){
     {
         coupActuel += 1;
         remplacementCoupSuivant(copieTableau);
+        xdir = 0;
+        ydir = 1;
         newCell();
         statesChanged();
     }
@@ -423,6 +439,8 @@ void GestionJeu::deplHaut(){
     {
         coupActuel += 1;
         remplacementCoupSuivant(copieTableau);
+        xdir = -1;
+        ydir = 0;
         newCell();
         statesChanged();
     }
@@ -464,6 +482,8 @@ void GestionJeu::deplBas(){
     {
         coupActuel += 1;
         remplacementCoupSuivant(copieTableau);
+        xdir = 1;
+        ydir = 0;
         newCell();
         statesChanged();
         //cout << coupActuel << endl;

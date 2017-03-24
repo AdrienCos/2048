@@ -38,8 +38,8 @@ Rectangle
             rotation.angle=0;
         }
 
-        front: Text { id: textFrontID; text: " " ; anchors.centerIn: parent; font.pixelSize: 35 }  // texte inital
-        back: Text { id: textBackID; text: rect.textBack ; anchors.centerIn: parent; font.pixelSize: 35 }     // nouveau texte
+        front: Text { id: textFrontID; text: " " ; anchors.centerIn: parent; font.pixelSize: 38 }  // texte inital
+        back: Text { id: textBackID; text: rect.textBack ; anchors.centerIn: parent; font.pixelSize: 38 }     // nouveau texte
 
         Timer{
             id:timer
