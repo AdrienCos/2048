@@ -65,6 +65,9 @@ private:
     int score;      // score actuel de la partie
     int maxscore;   // score maximal sur toute la durée de jeu
 
+    int xdir = 0;   // déplacement dans le sens vertical
+    int ydir = 0;   // déplacement dans le sens horizontal
+
 
 
 signals:

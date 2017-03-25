@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>MainForm.ui.qml</file>
+        <file>Cell.qml</file>
+        <file>Cell2.qml</file>
     </qresource>
 </RCC>
