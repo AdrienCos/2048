@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtGraphicalEffects 1.0
 
 Flipable {
     id: flipable
@@ -31,8 +32,7 @@ Flipable {
         color: "#b48f8f"
         radius: 6
 
-        Text { id: textFrontID; text: " " ; anchors.centerIn: parent; font.pixelSize: 38 }  // texte inital
-
+        Text { id: textFrontID; text: " " ; anchors.centerIn: parent; font.pixelSize: 38 }  // texte inital        
     }
 
     back: Rectangle {

@@ -38,7 +38,7 @@ Try to reach the 2048 tile ! Good luck"))
                 text : qsTr("About...")
                 onTriggered: {
                     messageDialog.title = qsTr("About...")
-                    messageDialog.show(qsTr("Game created by Alexandre Cartier and Adrien Cosson"))
+                    messageDialog.show(qsTr("Game created by Alexandre Cartier and Adrien Cosson \nBased on 2048 by Gabriel Cirulli, a clone of 1024.\nhttps://github.com/AdrienCos/2048"))
                 }
             }
         }
@@ -105,6 +105,8 @@ Try to reach the 2048 tile ! Good luck"))
                 vueJeu.deplBas();
                 //console.log("bouton bas presse")
                 break;
+            case Qt.Key_Escape:
+                Qt.quit();
             }
         }
 

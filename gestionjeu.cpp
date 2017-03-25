@@ -8,6 +8,7 @@ GestionJeu::GestionJeu(QObject *parent) : QObject(parent)
 {
     maxUndo = 2048;      // choix du nombre max de coups annulables, si on joue plus que ce nombre de coup, on crash
     coupActuel = 0;
+    coupActuelDir = 0;
     couleursActuelles = 0;
     initCouleurs();
     alloc(4,4);
@@ -22,13 +23,14 @@ void GestionJeu::newGame(int nb_lig, int nb_col)
 {
     free();     // liberation de memoire
     coupActuel = 0;
+    coupActuelDir = 0;
     alloc(nb_lig, nb_col);
     maxscore = max(maxscore, score);       // conservation en mémoire du meilleur score
     score = 0;
     perduChanged();
     statesChanged();
-    xdir = 1;       // animation de newgame différente d'un déplacement
-    ydir = -1;      // idem
+    xdir[coupActuel] = 1;       // animation de newgame différente d'un déplacement
+    ydir[coupActuel] = -1;      // idem
     newCell();
     newCell();
 }
@@ -96,6 +98,7 @@ void GestionJeu::undo()
         score -= 16;
         statesChanged();
         perduChanged();     // annule un éventuel Game Over
+        coupActuelDir--;
     }
 }
 
@@ -111,10 +114,14 @@ void GestionJeu::swapColors()
 // Allocation du tableau pour une nouvelle partie
 void GestionJeu::alloc(int nb_l, int nb_c)
 {
+    xdir = new int[maxUndo];
+    ydir = new int[maxUndo];
     tableau = new int**[maxUndo];
     for (int k = 0; k<maxUndo ; k++)
     {
         tableau[k] = new int*[nb_l];     //tableau d'entiers (valeurs cellules)
+        xdir[k] = 0;
+        ydir[k] = 0;
         for (int i=0 ; i<nb_l ; i++)
         {
             tableau[k][i] = new int[nb_c];
@@ -140,6 +147,8 @@ void GestionJeu::free()
         delete [] tableau[k];
     }
     delete [] tableau;
+    delete [] xdir;
+    delete [] ydir;
 }
 
 // Création d'une copie de travail de tableau[coupActuel]
@@ -209,8 +218,8 @@ QList<QString> GestionJeu::readStates()
     }
     liste.append((QString::number(score)));     // on transmet aussi le score actuel ...
     liste.append((QString::number(maxscore)));  // ... et le score max
-    liste.append((QString::number(xdir)));      // on transmet le sens de déplacement vertical...
-    liste.append((QString::number(ydir)));      // ... et horizontal
+    liste.append((QString::number(xdir[coupActuelDir])));      // on transmet le sens de déplacement vertical...
+    liste.append((QString::number(ydir[coupActuelDir])));      // ... et horizontal
     return liste;
 }
 
@@ -357,9 +366,10 @@ void GestionJeu::deplGauche(){
     if (aBouge)     // une nouvelle case n'apparait que si un mouvement a eu lieu
     {
         coupActuel += 1;    // on a joué un coup de plus
+        coupActuelDir++;
         remplacementCoupSuivant(copieTableau);
-        xdir = 0;
-        ydir = -1;
+        xdir[coupActuel] = 0;
+        ydir[coupActuel] = -1;
         newCell();
         statesChanged();
     }
@@ -401,9 +411,10 @@ void GestionJeu::deplDroite(){
     if(aBouge)
     {
         coupActuel += 1;
+        coupActuelDir++;
         remplacementCoupSuivant(copieTableau);
-        xdir = 0;
-        ydir = 1;
+        xdir[coupActuel] = 0;
+        ydir[coupActuel] = 1;
         newCell();
         statesChanged();
     }
@@ -444,9 +455,10 @@ void GestionJeu::deplHaut(){
     if(aBouge)
     {
         coupActuel += 1;
+        coupActuelDir++;
         remplacementCoupSuivant(copieTableau);
-        xdir = -1;
-        ydir = 0;
+        xdir[coupActuel] = -1;
+        ydir[coupActuel] = 0;
         newCell();
         statesChanged();
     }
@@ -487,9 +499,10 @@ void GestionJeu::deplBas(){
     if(aBouge)
     {
         coupActuel += 1;
+        coupActuelDir++;
         remplacementCoupSuivant(copieTableau);
-        xdir = 1;
-        ydir = 0;
+        xdir[coupActuel] = 1;
+        ydir[coupActuel] = 0;
         newCell();
         statesChanged();
         //cout << coupActuel << endl;
@@ -500,6 +513,3 @@ void GestionJeu::deplBas(){
     }
 }
 
-
-
-//----------------Gestion Fin de Partie ------------------//

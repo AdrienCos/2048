@@ -53,6 +53,7 @@ private:
 
     int maxUndo;        // nombre max d'undo réalisables à la suite
     int coupActuel;     // suivi du numéro du coup actuel
+    int coupActuelDir;  // vaut coupActuel, sauf lors de l'appel de Undo, où il se met à jour après l'animation
 
     void free();
     void alloc(int nb_lig , int nb_col);
@@ -61,8 +62,8 @@ private:
     int score;      // score actuel de la partie
     int maxscore;   // score maximal sur toute la durée de jeu
 
-    int xdir = 0;   // déplacement dans le sens vertical
-    int ydir = 0;   // déplacement dans le sens horizontal
+    int* xdir;   // historique des déplacements dans le sens vertical
+    int* ydir;   // historique des déplacements dans le sens horizontal
 
 
 

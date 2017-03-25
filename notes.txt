@@ -29,6 +29,7 @@ TODO : créer un fichier Bouton.qml pour gérer les boutons proprement
 TODO : gestion des sauvegardes
 
 TODO : gestion éventuelle de l'historique des directions des coups joués, pour que le Undo fonctionne mieux
+==> Done
 
 TODO : gérer dynamiquement la taille du texte des cellules, pour la diminuers quand leur valeur augmente
 (simplifier la tache en créant une fonction liant le texte à la taille, au lieu d'avoir une boucle for par exemple)
