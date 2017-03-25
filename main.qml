@@ -105,9 +105,6 @@ Try to reach the 2048 tile ! Good luck"))
                 vueJeu.deplBas();
                 //console.log("bouton bas presse")
                 break;
-            case Qt.Key_P:      // demande de game over immédiat
-                vueJeu.defaite();
-                break;
             }
         }
 
@@ -115,25 +112,6 @@ Try to reach the 2048 tile ! Good luck"))
         best_score.text: vueJeu.states[33]
         resultat_jeu.text: vueJeu.states[32]
 
-        // Gestion des textes des cells (sert surtout à clarifier l'interface graphique
-        // d'édition de MainForm.ui.qml)
-        //textCell0.text : vueJeu.states[0]
-        //textCell0.color: (0xffffff - vueJeu.states[0])
-//        textCell1.text : vueJeu.states[1]
-//        textCell2.text : vueJeu.states[2]
-//        textCell3.text : vueJeu.states[3]
-//        textCell4.text : vueJeu.states[4]
-//        textCell5.text : vueJeu.states[5]
-//        textCell6.text : vueJeu.states[6]
-//        textCell7.text : vueJeu.states[7]
-//        textCell8.text : vueJeu.states[8]
-//        textCell9.text : vueJeu.states[9]
-//        textCell10.text : vueJeu.states[10]
-//        textCell11.text : vueJeu.states[11]
-//        textCell12.text : vueJeu.states[12]
-//        textCell13.text : vueJeu.states[13]
-//        textCell14.text : vueJeu.states[14]
-//        textCell15.text : vueJeu.states[15]
 
         // Désactivation des boutons quand l'écran de Game Over est présent
         boutonNewGame.enabled: !vueJeu.perdu

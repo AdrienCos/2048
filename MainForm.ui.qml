@@ -54,8 +54,7 @@ Rectangle {
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 38
         anchors.horizontalCenter: parent.horizontalCenter
-        //focus: vueJeu.resume                 //très important, permet de selectionner la zone qui réagit au onPressed
-        focus: true
+        focus: true         //très important, permet de selectionner la zone qui réagit au onPressed
 
         Grid {
             id: grille

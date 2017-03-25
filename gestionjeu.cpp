@@ -26,7 +26,6 @@ void GestionJeu::newGame(int nb_lig, int nb_col)
     maxscore = max(maxscore, score);       // conservation en mémoire du meilleur score
     score = 0;
     perduChanged();
-    defaite();      // pour enlever l'écran de game over si on l'a invoqué avec P
     statesChanged();
     xdir = 1;       // animation de newgame différente d'un déplacement
     ydir = -1;      // idem
@@ -219,7 +218,7 @@ QList<QString> GestionJeu::readStates()
 // On verifie si la partie est perdue
 // Si oui, on renvoie true, sinon false
 // La partie est perdue si le tableau est plein ET que aucun mouvement n'est possible
-bool GestionJeu::perdu()
+bool GestionJeu::perduCheck()
 {
     bool existNeighbour = false;       // variable déterminant si deux cases identiques sont voisines
     bool isFull = true;     // variable déterminant si le tableau est plein
@@ -233,12 +232,37 @@ bool GestionJeu::perdu()
                 existNeighbour = true; // ... on a trouvé des voisins identiques
             }
         }
-        // on traite maintenant la case en bas à droite de la grille
-        if ((tableau[coupActuel][nb_lig-1][nb_col-1] == tableau[coupActuel][nb_lig-2][nb_col-1]) || (tableau[coupActuel][nb_lig-1][nb_col-1] == tableau[coupActuel][nb_lig-1][nb_col-2]))
+    }
+//    // on traite maintenant la case en bas à droite de la grille
+//    if ((tableau[coupActuel][nb_lig-1][nb_col-1] == tableau[coupActuel][nb_lig-2][nb_col-1]) || (tableau[coupActuel][nb_lig-1][nb_col-1] == tableau[coupActuel][nb_lig-1][nb_col-2]))
+//    {
+//        existNeighbour = true;
+//    }
+//    // on traite la dernière ligne
+//    if ((tableau[coupActuel][nb_lig-1][nb_col-1] == tableau[coupActuel][nb_lig-2][nb_col-1]) || (tableau[coupActuel][nb_lig-1][nb_col-1] == tableau[coupActuel][nb_lig-1][nb_col-2]))
+//    {
+//        existNeighbour = true;
+//    }
+    // on traite maintenant la dernière ligne
+    for (int j = 1; j< nb_col-1;j++ )
+    {
+        if ((tableau[coupActuel][nb_lig-1][j] == tableau[coupActuel][nb_lig-1][j-1]) || (tableau[coupActuel][nb_lig-1][j] == tableau[coupActuel][nb_lig-1][j+1]))
         {
             existNeighbour = true;
         }
     }
+    // on traite maintenant la dernière colonne
+    for (int i = 1; i< nb_lig-1;i++ )
+    {
+        if ((tableau[coupActuel][i][nb_col-1] == tableau[coupActuel][i-1][nb_col-1]) || (tableau[coupActuel][i][nb_col-1] == tableau[coupActuel][i+1][nb_col-1]))
+        {
+            existNeighbour = true;
+        }
+    }
+
+
+
+
 
     if (!existNeighbour)        // il n'y a pas deux cases voisines identiques
     {
@@ -260,18 +284,6 @@ bool GestionJeu::perdu()
     }
 }
 
-// Méthode de test servant à invoquer un écran de Game Over sans avoir à perdre réellement
-bool GestionJeu::defaiteRequest()
-{
-    if (coupActuel>0)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
 
 // Génération d'une nouvelle cellule dans le jeu, à un emplacement aléatoire
 // Quand cette fonction est appelée, on sait qu'il y a au moins une place libre
@@ -282,7 +294,7 @@ void GestionJeu::newCell()
     int i = 0;  // variables de recherche de case libre
     int j = 0;
     int num = 0;    // variable pour le choix de la valeur de la nouvelle case
-    srand(time(0));     // initialisation du seed de manière pseudo-aléatoire
+    srand(clock());     // initialisation du seed de manière pseudo-aléatoire
     while(!trouve)
     {
         i = rand()%nb_lig;  // entier aleatoire entre 0 et nb_lig

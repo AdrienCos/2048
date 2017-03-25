@@ -4,7 +4,6 @@ Flipable {
     id: flipable
     height: 100
     width: 100
-    //anchors.fill: parent
 
     property int animDuration : 150 // durée d'animation
     property int animDurationBis : 150

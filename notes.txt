@@ -17,6 +17,7 @@ désactivés, tandis que Try Again et Quit s'activent
 Bug : revoir le GameOver, qui se déclenche parfois au mauvais moment, ou qui ne se déclenche parfois pas (voire jamais ?)
 
 Bug : quand on joue trop vite, deux cases spawnent au meme endroit à la suite
+==> Fixed
 
 TODO : rajouter un moyen de vérifier quand coupActuel est trop proche de maxUndo, pour rajouter des cases au tableau (si on dépasse
 maxUndo avec coupActuel)

@@ -13,8 +13,7 @@ public:
     explicit GestionJeu(QObject *parent = 0);
 
     Q_PROPERTY(QList<QString> states READ readStates NOTIFY statesChanged)
-    Q_PROPERTY(bool perdu READ perdu NOTIFY perduChanged)
-    Q_PROPERTY(bool perdu READ defaiteRequest NOTIFY defaite)
+    Q_PROPERTY(bool perdu READ perduCheck NOTIFY perduChanged)
 
     // Méthode de création d'une nouvelle partie
     Q_INVOKABLE void newGame(int nb_lig, int nb_col);
@@ -35,12 +34,9 @@ public:
     Q_INVOKABLE void deplHaut();
     Q_INVOKABLE void deplBas();
 
-    // Méthode de GameOver immédiat (pour du test)
-    Q_INVOKABLE bool defaiteRequest();
-
     // Methode de transmission des infos au QML
     QList<QString> readStates();
-    bool perdu();     // permet de savoir si la partie est perdue
+    bool perduCheck();     // permet de savoir si la partie est perdue
 
     // Méthode d'initialisation de la liste de couleurs
     void initCouleurs();
@@ -73,7 +69,6 @@ private:
 signals:
     void statesChanged();
     void perduChanged();
-    void defaite();     // signal de demande de game over immédiat
 
 public slots:
 
