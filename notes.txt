@@ -21,10 +21,13 @@ Bug : quand on joue trop vite, deux cases spawnent au meme endroit à la suite
 TODO : rajouter un moyen de vérifier quand coupActuel est trop proche de maxUndo, pour rajouter des cases au tableau (si on dépasse
 maxUndo avec coupActuel)
 
-TODO : rajouter deux valeurs dans states : déplacement x et déplacement y
-
 TODO : changer la couleur du texte pour qu'elle soit toujours opposée au fond de la cellule
 
 TODO : créer un fichier Bouton.qml pour gérer les boutons proprement
 
-TODO : rajouter la rotation des valeurs selon la direction du déplacement
+TODO : gestion des sauvegardes
+
+TODO : gestion éventuelle de l'historique des directions des coups joués, pour que le Undo fonctionne mieux
+
+TODO : gérer dynamiquement la taille du texte des cellules, pour la diminuers quand leur valeur augmente
+(simplifier la tache en créant une fonction liant le texte à la taille, au lieu d'avoir une boucle for par exemple)

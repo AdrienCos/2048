@@ -6,8 +6,8 @@ Rectangle
     id: rect
     width: 100
     height: 100
-    x: 100
-    y: 100
+    //x: 100
+    //y: 100
     color : "#b48f8f"
     radius : 6
 
