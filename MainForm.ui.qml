@@ -201,6 +201,27 @@ Rectangle {
         }
     }
 
+    Cell2 {
+        id: celltest
+        x: 100
+        y: 300
+        sensx: "1"
+        sensy: "1"
+        colorBack: "#ad9b9e"
+        textBack: "2"
+        fontsize: 35
+    }
+    Cell2 {
+        id: celltest2
+        x: 300
+        y: 300
+        sensx: "1"
+        sensy: "1"
+        colorBack: "#ad9b9e"
+        textBack: "102"
+        fontsize: 35
+    }
+
     Rectangle {
         id: best
         width: 100

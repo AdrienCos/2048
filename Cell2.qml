@@ -12,8 +12,14 @@ Flipable {
     property string colorBack
     property string sensx: "-1"      // rotation selon l'axe x
     property string sensy: "0"      // rotation selon l'axe y
+    property int fontsize: 38
 
-    onColorBackChanged: showBack()
+    onColorBackChanged: {
+        updateFont()
+        showBack()
+        update()
+
+    }
 
     function showBack()
     {
@@ -25,6 +31,12 @@ Flipable {
         rotation.angle=0;
     }
 
+    function updateFont()
+    {
+        fontsize = (-12 * Math.floor(Math.log(textBackID.text,100)));
+        fontsize += 70;
+    }
+
     front: Rectangle {
         id: rectFront
         width: 100
@@ -32,7 +44,7 @@ Flipable {
         color: "#b48f8f"
         radius: 6
 
-        Text { id: textFrontID; text: " " ; anchors.centerIn: parent; font.pixelSize: 38 }  // texte inital        
+        Text { id: textFrontID; text: " " ; anchors.centerIn: parent; font.pixelSize: flipable.fontsize }  // texte inital
     }
 
     back: Rectangle {
@@ -42,7 +54,7 @@ Flipable {
         color: flipable.colorBack
         radius: 6
 
-        Text { id: textBackID; text: flipable.textBack ; anchors.centerIn: parent; font.pixelSize: 38 }     // nouveau texte
+        Text { id: textBackID; text: flipable.textBack ; anchors.centerIn: parent; font.pixelSize: flipable.fontsize }     // nouveau texte
 
     }
 
