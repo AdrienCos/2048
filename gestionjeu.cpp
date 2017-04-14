@@ -1,6 +1,9 @@
 #include "gestionjeu.h"
 #include <iostream>
 #include <math.h>
+#include <fstream>
+#include <string>
+#include <sstream>
 using namespace std;
 
 //Constructeur
@@ -296,7 +299,6 @@ bool GestionJeu::perduCheck()
 
 // Génération d'une nouvelle cellule dans le jeu, à un emplacement aléatoire
 // Quand cette fonction est appelée, on sait qu'il y a au moins une place libre
-// TODO : gestion de la fin de la partie
 void GestionJeu::newCell()
 {
     bool trouve = false;
@@ -511,5 +513,118 @@ void GestionJeu::deplBas(){
     {
         perduChanged();
     }
+}
+
+
+//-------------GESTION SAUVEGARDE------------------//
+
+
+void GestionJeu::saveGame(){
+
+    ofstream fichier("sauvegarde.txt", ios::out | ios::trunc);  // ouverture en écriture avec effacement du fichier ouvert
+    if(fichier)
+        {
+        int taille;
+        taille=min(coupActuel,maxUndo);             //nombre d'éléments du tableau à stocker
+
+        fichier<<"Nombres lignes et colonnes :"<<endl;
+        fichier<<nb_lig<<endl;
+        fichier<<nb_col<<endl;
+        fichier<<"Coup actuel :"<<endl;
+        fichier<<coupActuel<<endl;
+
+        fichier<<"Tableau :"<<endl;
+        for(int coup=0;coup<=taille;coup++){
+            for(int i=0;i<nb_lig;i++){
+                for(int j=0;j<nb_col;j++){
+                    fichier << tableau[coup][i][j]<<endl;
+                }
+            }
+        }
+
+        fichier<<"Numéro couleurs actuelles :"<<endl;
+        fichier<<couleursActuelles<<endl;
+        fichier<<"Score et maxscore :"<<endl;
+        fichier<<score<<endl;
+        fichier<<maxscore<<endl;
+        fichier<<"Historique déplacements :"<<endl;
+        //fichier<<xdir<<endl;          //nécessaire à stocker?
+        //fichier<<ydir<<endl;
+
+        fichier.close();
+        }
+
+    else
+        cerr << "Impossible d'ouvrir le fichier !" << endl;
+}
+
+void GestionJeu::loadGame(){
+    ifstream fichier("sauvegarde.txt", ios::in); //ouverture du fichier en lecture
+    if (fichier){
+
+        string ligne;                 //variable contenant la ligne lue
+
+        getline(fichier,ligne);       //première ligne, texte
+        //récupération nb_lig, nb_col
+        getline(fichier,ligne);
+        nb_lig=stoi(ligne);           //conversion string -> entier
+        getline(fichier,ligne);
+        nb_col=stoi(ligne);
+
+        //création d'un nouveau tableau
+        free();
+        alloc(nb_lig,nb_col);
+
+        //récupération coupActuel
+        getline(fichier,ligne);
+        getline(fichier,ligne);
+        coupActuel=stoi(ligne);
+        coupActuelDir=stoi(ligne);
+
+        //récupération du tableau
+        int taille;
+        taille=min(coupActuel,maxUndo);
+        cout<<taille<<endl;
+        cout<<coupActuel<<endl;
+        cout<<nb_lig<<endl;
+        cout<<nb_col<<endl;
+
+        getline(fichier,ligne);
+        for(int coup=0;coup<=taille;coup++){
+            for(int i=0;i<nb_lig;i++){
+                for(int j=0;j<nb_col;j++){
+                    getline(fichier,ligne);
+                    tableau[coup][i][j]=stoi(ligne);
+                }
+            }
+        }
+
+        //récupération des couleurs
+        getline(fichier,ligne);
+        getline(fichier,ligne);
+        couleursActuelles=stoi(ligne);
+
+        //récupération des scores
+        getline(fichier,ligne);
+        getline(fichier,ligne);
+        score=stoi(ligne);
+        getline(fichier,ligne);
+        maxscore=stoi(ligne);
+
+        //relance de la partie
+        perduChanged();         //à mettre?
+        statesChanged();
+
+        fichier.close();
+
+        for(int n=0;n<nb_lig;n++){
+            for(int m=0;m<nb_col;m++){
+                cout<<"tableau: "<<tableau[coupActuel][n][m];
+            }
+            cout<<endl;
+        }
+    }
+    else
+        cerr<<"Impossible d'ouvrir le fichier"<<endl;
 }
 
