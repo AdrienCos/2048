@@ -6,18 +6,19 @@ Flipable {
     height: 100
     width: 100
 
-    property int animDuration : 150 // durée d'animation
-    property int animDurationBis : 150
-    property string textBack
+    property int animDuration : 350 // durée d'animation
+    property int animDurationBis : 350
+    property string textBack : "1024"
     property string colorBack
     property string sensx: "-1"      // rotation selon l'axe x
     property string sensy: "0"      // rotation selon l'axe y
-    property int fontsize: 38
+    property int fontsize: 70
 
     onColorBackChanged: {
         updateFont()
         showBack()
-        update()
+        updateFont()
+
 
     }
 
@@ -33,8 +34,13 @@ Flipable {
 
     function updateFont()
     {
-        fontsize = (-12 * Math.floor(Math.log(textBackID.text,100)));
+        //fontsize = 70;
+        fontsize = (-12 * (Math.floor(getBaseLog(10,textBackID.text) ) ) );
         fontsize += 70;
+    }
+
+    function getBaseLog(x, y) { // renvoie le log de y en base x
+        return Math.log(y) / Math.log(x);
     }
 
     front: Rectangle {
@@ -66,6 +72,7 @@ Flipable {
         onTriggered: {
             textFrontID.text = textBackID.text      // on remplace la nouvelle valeur de front
             rectFront.color = rectBack.color
+            //updateFont();
             flipable.animDuration = 0           // on cache la seconde rotation
             rotation.angle=0                    // seconde rotation
             flipable.animDuration = flipable.animDurationBis    // on reset la valeur du temps de rotation
