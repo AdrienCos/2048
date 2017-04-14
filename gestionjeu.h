@@ -24,6 +24,12 @@ public:
     // Méthode de changement du set de couleurs
     Q_INVOKABLE void swapColors();
 
+    //Méthode de sauvegarde du jeu
+    Q_INVOKABLE void saveGame();
+
+    //Méthode de chargement d'un jeu sauvegardé
+    Q_INVOKABLE void loadGame();
+
     // Méthodes de création et suppression de copie de travail de tableau[coupActuel]
     int** copieActuel();
     void remplacementCoupSuivant(int** copieTableau);
@@ -45,9 +51,9 @@ private:
 
     int nb_lig;
     int nb_col;
-    int*** tableau;          //liste des valeurs des cellules
-    QString** couleurs; // tableau des couleurs disponibles
-    int couleursActuelles; // position des couleurs utilisées
+    int*** tableau;         //liste des valeurs des cellules
+    QString** couleurs;     // tableau des couleurs disponibles
+    int couleursActuelles;  // position des couleurs utilisées
     int nbJeuxCouleurs = 3;     // nombre de jeux de couleurs
     int nbCouleursParJeu = 11;   // nombre de couleurs par jeu
 

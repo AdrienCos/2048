@@ -19,6 +19,14 @@ ApplicationWindow {
                 text: qsTr("Exit")
                 onTriggered: Qt.quit();
             }
+            MenuItem{
+                text: qsTr("Save Game")
+                onTriggered: vueJeu.saveGame();
+            }
+            MenuItem{
+                text: qsTr("Load Game")
+                onTriggered: vueJeu.loadGame();
+            }
         }
         Menu {
             title: qsTr("Help")
